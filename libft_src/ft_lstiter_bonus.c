@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   ft_lstiter_bosnus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/06 14:59:21 by jeakim           ###   ########.fr       */
+/*   Created: 2023/10/21 17:37:30 by jimchoi           #+#    #+#             */
+/*   Updated: 2023/10/23 13:15:59 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#include "libft.h"
 
-# include "libft_src/libft.h"
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	t_list	*iter;
 
-
-#endif
+	if (lst == 0 || f == 0)
+		return ;
+	iter = lst;
+	while (iter != 0)
+	{
+		f(iter->content);
+		iter = iter->next;
+	}
+}

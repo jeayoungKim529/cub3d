@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/06 14:59:21 by jeakim           ###   ########.fr       */
+/*   Created: 2023/10/21 11:04:15 by jimchoi           #+#    #+#             */
+/*   Updated: 2023/10/23 15:52:15 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#include "libft.h"
 
-# include "libft_src/libft.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*new;
 
-
-#endif
+	new = malloc(sizeof(t_list));
+	if (!new)
+		return (0);
+	new->content = content;
+	new->next = 0;
+	return (new);
+}

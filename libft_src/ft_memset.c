@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/06 14:59:21 by jeakim           ###   ########.fr       */
+/*   Created: 2023/10/15 16:56:42 by jimchoi           #+#    #+#             */
+/*   Updated: 2023/10/15 17:00:19 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#include "libft.h"
 
-# include "libft_src/libft.h"
+void	*ft_memset(void *b, int c, size_t len)
+{
+	unsigned char	*dest;
 
-
-#endif
+	dest = (unsigned char *)b;
+	while (len--)
+		dest[len] = (unsigned char)c;
+	return (dest);
+}

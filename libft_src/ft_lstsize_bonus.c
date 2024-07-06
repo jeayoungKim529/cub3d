@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/06 14:59:21 by jeakim           ###   ########.fr       */
+/*   Created: 2023/10/21 15:12:28 by jimchoi           #+#    #+#             */
+/*   Updated: 2023/10/23 15:53:01 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#include "libft.h"
 
-# include "libft_src/libft.h"
+int	ft_lstsize(t_list *lst)
+{
+	int		size;
 
-
-#endif
+	size = 0;
+	while (lst != 0)
+	{
+		lst = lst->next;
+		size++;
+	}
+	return (size);
+}
