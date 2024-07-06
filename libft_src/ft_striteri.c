@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.c                                              :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 13:21:05 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/06 14:55:46 by jeakim           ###   ########.fr       */
+/*   Created: 2023/10/16 16:53:02 by jimchoi           #+#    #+#             */
+/*   Updated: 2024/04/15 16:14:02 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub.h"
+#include "libft.h"
 
-int	main()
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	
+	size_t			len;
+	unsigned int	i;
 
-
-	return (0);
+	i = 0;
+	if (s == NULL)
+		return ;
+	len = ft_strlen(s);
+	if (!len)
+		len = 1;
+	while (i < len)
+	{
+		f(i, s + i);
+		i++;
+	}
+	return ;
 }
