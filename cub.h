@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/08 18:45:43 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/08 19:05:37 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,18 @@
 # include "libft_src/libft.h"
 # include <stdio.h>
 
-typedef	struct s_info
+typedef struct s_info
 {
-	size_t	map_w;
-	size_t	map_h;
-	char	**map;
-	char	*file;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	char	*F;
-	// char	F[3];
-	char	*C;
-	// char	C[3];
+	size_t			map_w;
+	size_t			map_h;
+	char			**map;
+	char			*file;
+	char			*no;
+	char			*so;
+	char			*we;
+	char			*ea;
+	unsigned char	f[3];
+	unsigned char	c[3];
 }	t_info;
 
 //cub.c
