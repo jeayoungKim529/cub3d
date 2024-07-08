@@ -6,7 +6,7 @@
 #    By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/08 13:27:08 by jeakim           ###   ########.fr        #
+#    Updated: 2024/07/08 18:41:01 by jeakim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,9 @@ endif
 
 SRCS = cub.c\
 		parsing.c\
-		# parsing_check_only_six.c
+		parsing_init_type.c\
+		parsing_init_map.c\
+		parsing_check.c
 
 OBJS = $(SRCS:.c=.o)
 
