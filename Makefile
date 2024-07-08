@@ -6,7 +6,7 @@
 #    By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/06 13:21:55 by jeakim           ###   ########.fr        #
+#    Updated: 2024/07/08 13:27:08 by jeakim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ ifdef DEBUG
 	COMFILE_FLAGS += -g3 -fsanitize=address
 endif
 
-SRCS = cub.c
+SRCS = cub.c\
+		parsing.c\
+		# parsing_check_only_six.c
 
 OBJS = $(SRCS:.c=.o)
 

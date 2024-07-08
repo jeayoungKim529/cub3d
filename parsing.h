@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.h                                              :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/08 13:12:34 by jeakim           ###   ########.fr       */
+/*   Created: 2024/07/06 15:16:31 by jeakim            #+#    #+#             */
+/*   Updated: 2024/07/08 11:54:02 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB_H
-# define CUB_H
+#ifndef PARSING_H
+# define PARSING_H
 
-# include "libft_src/libft.h"
-# include <stdio.h>
+# include <fcntl.h>
+# include <sys/types.h>
+// # include <sys/stat.h>
 
-typedef	struct s_info
-{
-	char	*file;
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	char	*F;
-	// char	F[3];
-	char	*C;
-	// char	C[3];
-}	t_info;
-
-//cub.c
-void	parsing_error(int flag);
-//parsing.c
-void	parsing(int argc, char *argv[], t_info *info);
+//check_only_six.c
+void	check_only_six(char *argv[]);
 
 #endif
