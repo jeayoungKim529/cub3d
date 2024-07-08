@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/08 13:12:34 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/08 15:31:16 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 typedef	struct s_info
 {
+	size_t	map_w;
+	size_t	map_h;
 	char	*file;
 	char	*NO;
 	char	*SO;
