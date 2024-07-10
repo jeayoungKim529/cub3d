@@ -3,36 +3,37 @@
 #include <math.h>
 # include "./minilibx_mms_20210621/mlx.h"
 
+
 #define screenWidth 640
 #define screenHeight 480
 #define mapWidth 24
 #define mapHeight 24
 
 int worldMap[mapWidth][mapHeight] = {
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-  {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-  {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
+    {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
 typedef struct {
@@ -49,53 +50,126 @@ typedef struct {
     double dirY;
     double planeX;
     double planeY;
+    int move_forward;
+    int move_backward;
+    int rotate_left;
+    int rotate_right;
 } t_data;
+
+
+void move_player(t_data *data);
+int main_loop(t_data *data);
+
 
 void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
     char *dst;
-
     dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
     *(unsigned int*)dst = color;
 }
 
-int key_hook(int keycode, t_data *data)
+void clear_screen(t_data *data)
 {
-    // 키 입력 처리
-    // 예: ESC 키로 종료
-    if (keycode == 53) // ESC key
-        exit(0);
+    for (int y = 0; y < screenHeight; y++)
+    {
+        for (int x = 0; x < screenWidth; x++)
+        {
+            my_mlx_pixel_put(data, x, y, 0x000000);  // 0x000000은 검은색
+        }
+    }
+}
+
+int key_press(int keycode, t_data *data)
+{
+    if (keycode == 13) data->move_forward = 1;
+    if (keycode == 1)  data->move_backward = 1;
+    if (keycode == 0)  data->rotate_left = 1;
+    if (keycode == 2)  data->rotate_right = 1;
+    if (keycode == 53) exit(0);
+
+    move_player(data);
+
+    clear_screen(data);
+
     return (0);
+}
+
+int key_release(int keycode, t_data *data)
+{
+    if (keycode == 13) data->move_forward = 0;
+    if (keycode == 1)  data->move_backward = 0;
+    if (keycode == 0)  data->rotate_left = 0;
+    if (keycode == 2)  data->rotate_right = 0;
+
+    main_loop(data);
+
+    return (0);
+}
+
+void move_player(t_data *data)
+{
+    // double moveSpeed = 0.05;
+    double moveSpeed = 0.1;
+    double rotSpeed = 0.03;
+
+    if (data->move_forward)
+    {
+        if (!worldMap[(int)(data->posX + data->dirX * moveSpeed)][(int)(data->posY)])
+            data->posX += data->dirX * moveSpeed;
+        if (!worldMap[(int)(data->posX)][(int)(data->posY + data->dirY * moveSpeed)])
+            data->posY += data->dirY * moveSpeed;
+    }
+    if (data->move_backward)
+    {
+        if (!worldMap[(int)(data->posX - data->dirX * moveSpeed)][(int)(data->posY)])
+            data->posX -= data->dirX * moveSpeed;
+        if (!worldMap[(int)(data->posX)][(int)(data->posY - data->dirY * moveSpeed)])
+            data->posY -= data->dirY * moveSpeed;
+    }
+    if (data->rotate_right)
+    {
+        double oldDirX = data->dirX;
+        data->dirX = data->dirX * cos(-rotSpeed) - data->dirY * sin(-rotSpeed);
+        data->dirY = oldDirX * sin(-rotSpeed) + data->dirY * cos(-rotSpeed);
+        double oldPlaneX = data->planeX;
+        data->planeX = data->planeX * cos(-rotSpeed) - data->planeY * sin(-rotSpeed);
+        data->planeY = oldPlaneX * sin(-rotSpeed) + data->planeY * cos(-rotSpeed);
+    }
+    if (data->rotate_left)
+    {
+        double oldDirX = data->dirX;
+        data->dirX = data->dirX * cos(rotSpeed) - data->dirY * sin(rotSpeed);
+        data->dirY = oldDirX * sin(rotSpeed) + data->dirY * cos(rotSpeed);
+        double oldPlaneX = data->planeX;
+        data->planeX = data->planeX * cos(rotSpeed) - data->planeY * sin(rotSpeed);
+        data->planeY = oldPlaneX * sin(rotSpeed) + data->planeY * cos(rotSpeed);
+    }
 }
 
 int main_loop(t_data *data)
 {
-    // 레이캐스팅 및 렌더링 로직
+    // move_player(data);
+    clear_screen(data);
+
     for (int x = 0; x < screenWidth; x++)
     {
         double cameraX = 2 * x / (double)screenWidth - 1;
         double rayDirX = data->dirX + data->planeX * cameraX;
         double rayDirY = data->dirY + data->planeY * cameraX;
 
-        // 맵에서의 현재 위치
         int mapX = (int)data->posX;
         int mapY = (int)data->posY;
 
-        // 레이의 길이
         double sideDistX, sideDistY;
 
-        // DDA를 위한 단계 크기
         double deltaDistX = (rayDirX == 0) ? 1e30 : fabs(1 / rayDirX);
         double deltaDistY = (rayDirY == 0) ? 1e30 : fabs(1 / rayDirY);
         double perpWallDist;
 
-        // DDA 단계 방향
         int stepX, stepY;
+        int hit = 0;
+        int side;
 
-        int hit = 0; // 벽 충돌 여부
-        int side;    // NS 또는 EW 벽
-
-        // DDA 초기화
         if (rayDirX < 0)
         {
             stepX = -1;
@@ -117,7 +191,6 @@ int main_loop(t_data *data)
             sideDistY = (mapY + 1.0 - data->posY) * deltaDistY;
         }
 
-        // DDA 수행
         while (hit == 0)
         {
             if (sideDistX < sideDistY)
@@ -135,29 +208,28 @@ int main_loop(t_data *data)
             if (worldMap[mapX][mapY] > 0) hit = 1;
         }
 
-        // 벽까지의 거리 계산
         if (side == 0) perpWallDist = (sideDistX - deltaDistX);
         else           perpWallDist = (sideDistY - deltaDistY);
 
-        // 화면에 그릴 선의 높이 계산
         int lineHeight = (int)(screenHeight / perpWallDist);
 
-        // 그릴 선의 시작과 끝 계산
         int drawStart = -lineHeight / 2 + screenHeight / 2;
         if (drawStart < 0) drawStart = 0;
         int drawEnd = lineHeight / 2 + screenHeight / 2;
         if (drawEnd >= screenHeight) drawEnd = screenHeight - 1;
 
-        // 색상 선택 (예시)
         int color;
         switch(worldMap[mapX][mapY])
         {
-            case 1:  color = 0xFF0000;  break; // 빨강
-            case 2:  color = 0x00FF00;  break; // 초록
-            default: color = 0x0000FF;  break; // 파랑
+            case 1:  color = 0xFF0000;  break;
+            case 2:  color = 0x00FF00;  break;
+            case 3:  color = 0x0000FF;  break;
+            case 4:  color = 0xFFFFFF;  break;
+            default: color = 0xFFFF00;  break;
         }
 
-        // 선 그리기
+        if (side == 1) color = color / 2;
+
         for (int y = drawStart; y < drawEnd; y++)
             my_mlx_pixel_put(data, x, y, color);
     }
@@ -175,7 +247,6 @@ int main()
     data.img = mlx_new_image(data.mlx, screenWidth, screenHeight);
     data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 
-    // 초기 위치 및 방향 설정
     data.posX = 22;
     data.posY = 12;
     data.dirX = -1;
@@ -183,8 +254,14 @@ int main()
     data.planeX = 0;
     data.planeY = 0.66;
 
+    data.move_forward = 0;
+    data.move_backward = 0;
+    data.rotate_left = 0;
+    data.rotate_right = 0;
+
     mlx_loop_hook(data.mlx, main_loop, &data);
-    mlx_key_hook(data.win, key_hook, &data);
+    mlx_hook(data.win, 2, 1L<<0, key_press, &data);
+    mlx_hook(data.win, 3, 1L<<1, key_release, &data);
     mlx_loop(data.mlx);
 
     return (0);
