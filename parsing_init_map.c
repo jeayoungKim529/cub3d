@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init_map.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:31:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 17:22:50 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/10 19:33:40 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,22 @@ void	init_map_oz(t_info *info, int fd, char *str)
 	}
 }
 
+char	*return_str(t_info *info, int row, int fd)
+{
+	int		i;
+	char	*str;
+
+	i = 0;
+	str = get_next_line(fd);
+	while (str && i < row)
+	{
+		free(str);
+		str = get_next_line(fd);
+		i++;
+	}
+	return (str);
+}
+
 void	init_map(t_info *info, int row)
 {
 	int		fd;
@@ -86,27 +102,13 @@ void	init_map(t_info *info, int row)
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
 		parsing_error(strerror(errno), 2);
-	i = 0;
-	str = get_next_line(fd);
-	while (str && i < row)
-	{
-		free(str);
-		str = get_next_line(fd);
-		i++;
-	}
+	str = return_str(info, row, fd);
 	init_map_size(info, fd, str);
 	close(fd);
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
 		parsing_error(strerror(errno), 2);
-	i = 0;
-	str = get_next_line(fd);
-	while (str && i < row)
-	{
-		free(str);
-		str = get_next_line(fd);
-		i++;
-	}
+	str = return_str(info, row, fd);
 	init_map_oz(info, fd, str);
 	close(fd);
 }
