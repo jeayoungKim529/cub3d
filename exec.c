@@ -103,10 +103,10 @@ int key_press(int keycode, t_data *data)
 // 키 누름 해제 이벤트 처리
 int key_release(int keycode, t_data *data)
 {
-    if (keycode == 13) data->move_forward = 0;
-    if (keycode == 1)  data->move_backward = 0;
-    if (keycode == 0)  data->rotate_left = 0;
-    if (keycode == 2)  data->rotate_right = 0;
+    if (keycode == MOVE_FORWARD) data->move_forward = 0;
+    if (keycode == MOVE_BACKWARD)  data->move_backward = 0;
+    if (keycode == TURN_LEFT)  data->rotate_left = 0;
+    if (keycode == TURN_RIGHT)  data->rotate_right = 0;
 
     main_loop(data);
 
@@ -245,14 +245,15 @@ int main_loop(t_data *data)
 
 		// 벽 색상
         int color;
-        switch(cub_atoi(data->worldMap[mapX][mapY]))
-        {
-            case 1:  color = 0xFF0000;  break;
-            case 2:  color = 0x00FF00;  break;
-            case 3:  color = 0x0000FF;  break;
-            case 4:  color = 0xFFFFFF;  break;
-            default: color = 0xFFFF00;  break;
-        }
+        // switch(cub_atoi(data->worldMap[mapX][mapY]))
+        // {
+        //     case 1:  color = 0xFF0000;  break;
+        //     case 2:  color = 0x00FF00;  break;
+        //     case 3:  color = 0x0000FF;  break;
+        //     case 4:  color = 0xFFFFFF;  break;
+        //     default: color = 0xFFFF00;  break;
+        // }
+		color = 0xFFFF00;
 		// 벽면 음영 처리
         if (side == 1) color = color / 2;
 		// 수직선 그리기

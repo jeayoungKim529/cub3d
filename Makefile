@@ -6,7 +6,7 @@
 #    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/10 17:35:47 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/10 19:10:30 by jimchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ MLXFLAG = -L $(MLXDIR) -lmlx -L $(LIBFT_DIR) -lft -framework OpenGL -framework A
 LIBMLXDIR = ./minilibx_mms_20210621
 
 ifdef DEBUG
-	COMFILE_FLAGS += -g3 -fsanitize=address
+	CFLAGS += -g3 -fsanitize=address
 endif
 
 SRCS = cub.c\
@@ -46,7 +46,7 @@ $(NAME): $(OBJS)
 	@make bonus -C $(LIBFT_DIR)
 	make -s -C $(MLXDIR)
 	cp ./$(MLXDIR)/libmlx.dylib ./libmlx.dylib
-	$(CC) $(CFLAG) $(OBJS) $(LIBFT) $(MLXFLAG) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAG) -o $(NAME)
 # $(CC) -o $@ $(OBJS) $(LIBFT)
 
 
