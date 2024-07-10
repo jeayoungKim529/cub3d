@@ -1,23 +1,26 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
+/*   Updated: 2024/07/10 20:57:12 by jimchoi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <math.h>
-# include "./minilibx_mms_20210621/mlx.h"
-
-#include "cub.h"
-#include "parsing.h"
-
+#include "exec.h"
 
 //화면 크기와 맵 크기 정의
-#define screenWidth 640
-#define screenHeight 480
-#define TURN_LEFT 123
-#define TURN_RIGHT 124
-#define MOVE_FORWARD 13
-#define MOVE_BACKWARD 1
-#define MOVE_LEFT 0
-#define MOVE_RIGHT 2
+// #define SCREEN_WIDTH 640
+// #define SCREEN_HEIGHT 480
+// #define TURN_LEFT 123
+// #define TURN_RIGHT 124
+// #define MOVE_FORWARD 13
+// #define MOVE_BACKWARD 1
+// #define MOVE_LEFT 0
+// #define MOVE_RIGHT 2
 // #define mapWidth 24
 // #define mapHeight 24
 
@@ -39,32 +42,6 @@ long long	cub_atoi(char str)
 	return (num * neg);
 }
 
-typedef struct {
-    void *mlx;
-    void *win;
-    void *img;
-    char *addr;
-    int bits_per_pixel;
-    int line_length;
-    int endian;
-    double posX;
-    double posY;
-    double dirX;
-    double dirY;
-    double planeX;
-    double planeY;
-    int move_forward;
-    int move_backward;
-    int move_left;
-    int move_right;
-    int rotate_left;
-    int rotate_right;
-	char **worldMap;
-	int mapHeight;
-	int mapWidth;
-	unsigned char	floor[3];
-	unsigned char	ceiling[3];
-} t_data;
 
 int	create_rgb(int r, int g, int b)
 {
@@ -84,16 +61,16 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 //화면을 검정색으로
 void clear_screen(t_data *data)
 {
-	for (int x = 0; x < screenWidth; x++)
+	for (int x = 0; x < SCREEN_WIDTH; x++)
     {
-		for (int y = 0; y < screenHeight / 2; y++)
+		for (int y = 0; y < SCREEN_HEIGHT / 2; y++)
         {
             my_mlx_pixel_put(data, x, y, create_rgb(data->ceiling[0], data->ceiling[1],data->ceiling[2]));  // 0x000000은 검은색
         }
     }
-	for (int x = 0; x < screenWidth; x++)
+	for (int x = 0; x < SCREEN_WIDTH; x++)
     {
-		for (int y = screenHeight / 2; y < screenHeight; y++)
+		for (int y = SCREEN_HEIGHT / 2; y < SCREEN_HEIGHT; y++)
         {
             my_mlx_pixel_put(data, x, y, create_rgb(data->floor[0], data->floor[1],data->floor[2]));  // 0x000000은 검은색
         }
@@ -212,9 +189,9 @@ int main_loop(t_data *data)
     clear_screen(data);
 
 // 각 수직선에 대해 레이캐스팅 수행
-    for (int x = 0; x < screenWidth; x++)
+    for (int x = 0; x < SCREEN_WIDTH; x++)
     {
-        double cameraX = 2 * x / (double)screenWidth - 1; //x값(화면의 수직선)이 위치가 카메라평면에서 차지하는 x좌표 입니다
+        double cameraX = 2 * x / (double)SCREEN_WIDTH - 1; //x값(화면의 수직선)이 위치가 카메라평면에서 차지하는 x좌표 입니다
         double rayDirX = data->dirX + data->planeX * cameraX; // 광광선의 방향벡터
         double rayDirY = data->dirY + data->planeY * cameraX;
 		//현재 맵 위치
@@ -279,12 +256,12 @@ int main_loop(t_data *data)
 
 
 		//화면에 그릴 벽의 높이
-        int lineHeight = (int)(screenHeight / perpWallDist);
+        int lineHeight = (int)(SCREEN_HEIGHT / perpWallDist);
 
-        int drawStart = -lineHeight / 2 + screenHeight / 2;
+        int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
         if (drawStart < 0) drawStart = 0;
-        int drawEnd = lineHeight / 2 + screenHeight / 2;
-        if (drawEnd >= screenHeight) drawEnd = screenHeight - 1;
+        int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
+        if (drawEnd >= SCREEN_HEIGHT) drawEnd = SCREEN_HEIGHT - 1;
 
 		// 벽 색상
         int color;
@@ -327,8 +304,8 @@ int	map(t_info	info)
 
 
     data.mlx = mlx_init();
-    data.win = mlx_new_window(data.mlx, screenWidth, screenHeight, "Raycaster");
-    data.img = mlx_new_image(data.mlx, screenWidth, screenHeight);
+    data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Raycaster");
+    data.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
     data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 
 	data.worldMap = info.map;
@@ -356,15 +333,7 @@ int	map(t_info	info)
 	data.ceiling[0] = info.c[0];
 	data.ceiling[1] = info.c[1];
 	data.ceiling[2] = info.c[2];
-	// for(int i = 0; i < data.mapHeight; i++)
-	// {
-	// 	for(int j = 0; j < data.mapWidth; j++)
-    //     {
-    //         // printf("%d ", cub_atoi(data.worldMap[i][j]));
-    //         printf("%c", data.worldMap[i][j]);
-    //     }
-    //     printf("|\n");
-	// }
+
 
     mlx_loop_hook(data.mlx, main_loop, &data);
     mlx_hook(data.win, 2, 1L<<0, key_press, &data);
