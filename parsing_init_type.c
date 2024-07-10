@@ -6,43 +6,14 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 11:15:33 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 14:37:26 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 #include "parsing.h"
 
-long long	ft_atoi_type(const char *str)
-{
-	long long	neg;
-	long long	num;
-	int			cnt;
-
-	cnt = 0;
-	num = 0;
-	neg = 1;
-	while (*str == '\n' || *str == '\t' || *str == '\v'
-		|| *str == '\f' || *str == '\r' || *str == ' ')
-		str++;
-	while (*str == '-' || *str == '+')
-	{
-		if (*str == '-')
-			neg = -1;
-		cnt++;
-		str++;
-	}
-	while ('0' <= *str && *str <= '9')
-	{
-		num = num * 10 + *str - '0';
-		str++;
-	}
-	if (cnt > 1)
-		num = 0;
-	return (num * neg);
-}
-
-void	init_fc(t_info *info, char *s, int flag)
+void	init_color(t_info *info, char *s, int flag)
 {
 	char	**tmp;
 	int		i;
@@ -52,22 +23,46 @@ void	init_fc(t_info *info, char *s, int flag)
 	while (tmp[i])
 		i++;
 	if (i != 3)
-		parsing_error(2);
+		parsing_error("color num erorr", 2);
 	if (flag == 0)
 	{
-		i = -1;
+		i = 0;
 		while (++i < 3)
-			info->f[i] = ft_atoi(tmp[i]);
+			info->f[i] = ft_atoi_cub(tmp[i]);
 	}
 	if (flag == 1)
 	{
-		i = -1;
+		i = 0;
 		while (++i < 3)
-			info->c[i] = ft_atoi_type(tmp[i]);
+			info->c[i] = ft_atoi_cub(tmp[i]);
 	}
 	i = -1;
 	while (++i < 3)
 		free(tmp[i]);
+}
+
+void	init_texture(t_info *info, char *str)
+{
+	char	**tmp;
+	int		i;
+
+	tmp = ft_split(str, ' ');
+	i = 0;
+	while (tmp[i])
+		i++;
+	if (i != 2)
+		parsing_error("texture file pass erorr", 2);
+	if (ft_strncmp(tmp[0], "NO", 3) == 0)
+		info->no = ft_strdup(tmp[1]);
+	else if (ft_strncmp(tmp[0], "SO", 3) == 0)
+		info->so = ft_strdup(tmp[1]);
+	else if (ft_strncmp(tmp[0], "WE", 3) == 0)
+		info->we = ft_strdup(tmp[1]);
+	else if (ft_strncmp(tmp[0], "EA", 3) == 0)
+		info->ea = ft_strdup(tmp[1]);
+	while (--i >= 0)
+		free(tmp[i]);
+	free(tmp);
 }
 
 int	init_six(t_info *info, char *str, int i)
@@ -78,17 +73,17 @@ int	init_six(t_info *info, char *str, int i)
 	while (tmp[i])
 		i++;
 	if (ft_strncmp(tmp[0], "NO", 3) == 0)
-		info->no = ft_strdup(tmp[1]);
+		init_texture(info, str);
 	else if (ft_strncmp(tmp[0], "SO", 3) == 0)
-		info->so = ft_strdup(tmp[1]);
+		init_texture(info, str);
 	else if (ft_strncmp(tmp[0], "WE", 3) == 0)
-		info->we = ft_strdup(tmp[1]);
+		init_texture(info, str);
 	else if (ft_strncmp(tmp[0], "EA", 3) == 0)
-		info->ea = ft_strdup(tmp[1]);
+		init_texture(info, str);
 	else if (ft_strncmp(tmp[0], "F", 2) == 0)
-		init_fc(info, str, 0);
+		init_color(info, str, 0);
 	else if (ft_strncmp(tmp[0], "C", 2) == 0)
-		init_fc(info, str, 1);
+		init_color(info, str, 1);
 	else
 		return (0);
 	while (--i >= 0)
@@ -106,7 +101,7 @@ int	init_type(t_info *info)
 
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
-		parsing_error(1);
+		parsing_error(strerror(errno), 1);
 	num = 0;
 	row = 0;
 	str = get_next_line(fd);
@@ -121,7 +116,7 @@ int	init_type(t_info *info)
 		str = get_next_line(fd);
 	}
 	if (num != 6)
-		parsing_error(1);
+		parsing_error(strerror(errno), 1);
 	close(fd);
 	return (row + 1);
 }
