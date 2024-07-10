@@ -55,14 +55,21 @@ typedef struct {
     double planeY;
     int move_forward;
     int move_backward;
+    int move_left;
+    int move_right;
     int rotate_left;
     int rotate_right;
 	char **worldMap;
 	int mapHeight;
 	int mapWidth;
+	unsigned char	floor[3];
+	unsigned char	ceiling[3];
 } t_data;
 
-
+int	create_rgb(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
+}
 void move_player(t_data *data);
 int main_loop(t_data *data);
 
@@ -77,11 +84,18 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
 //화면을 검정색으로
 void clear_screen(t_data *data)
 {
-    for (int y = 0; y < screenHeight; y++)
+	for (int x = 0; x < screenWidth; x++)
     {
-        for (int x = 0; x < screenWidth; x++)
+		for (int y = 0; y < screenHeight / 2; y++)
         {
-            my_mlx_pixel_put(data, x, y, 0x000000);  // 0x000000은 검은색
+            my_mlx_pixel_put(data, x, y, create_rgb(data->ceiling[0], data->ceiling[1],data->ceiling[2]));  // 0x000000은 검은색
+        }
+    }
+	for (int x = 0; x < screenWidth; x++)
+    {
+		for (int y = screenHeight / 2; y < screenHeight; y++)
+        {
+            my_mlx_pixel_put(data, x, y, create_rgb(data->floor[0], data->floor[1],data->floor[2]));  // 0x000000은 검은색
         }
     }
 }
@@ -90,6 +104,8 @@ int key_press(int keycode, t_data *data)
 {
     if (keycode == MOVE_FORWARD) data->move_forward = 1;
     if (keycode == MOVE_BACKWARD)  data->move_backward = 1;
+    if (keycode == MOVE_LEFT)  data->move_left = 1;
+    if (keycode == MOVE_RIGHT)  data->move_right = 1;
     if (keycode == TURN_LEFT)  data->rotate_left = 1;
     if (keycode == TURN_RIGHT)  data->rotate_right = 1;
     if (keycode == 53) exit(0);
@@ -105,6 +121,8 @@ int key_release(int keycode, t_data *data)
 {
     if (keycode == MOVE_FORWARD) data->move_forward = 0;
     if (keycode == MOVE_BACKWARD)  data->move_backward = 0;
+	if (keycode == MOVE_LEFT)  data->move_left = 0;
+    if (keycode == MOVE_RIGHT)  data->move_right = 0;
     if (keycode == TURN_LEFT)  data->rotate_left = 0;
     if (keycode == TURN_RIGHT)  data->rotate_right = 0;
 
@@ -137,6 +155,31 @@ void move_player(t_data *data)
         if (!cub_atoi(data->worldMap[(int)(data->posX)][(int)(data->posY - data->dirY * moveSpeed)]))
             data->posY -= data->dirY * moveSpeed;
     }
+// 왼쪽 이동
+	if (data->move_left)
+	{
+		// 방향벡터 dir을 90도 회전시켜 측면 이동 벡터 생성
+
+		double move_x = -data->dirY * moveSpeed;
+		double move_y = data->dirX * moveSpeed;
+
+		if(!cub_atoi(data->worldMap[(int)(data->posX + move_x)][(int)(data->posY)]))
+			data->posX += move_x;
+		if(!cub_atoi(data->worldMap[(int)(data->posX)][(int)(data->posY + move_y)]))
+			data->posY += move_y;
+	}
+	//오른쪽 이동
+	if (data->move_right)
+	{
+
+		double move_x = data->dirY * moveSpeed;
+		double move_y = -data->dirX * moveSpeed;
+
+		if (!cub_atoi(data->worldMap[(int)(data->posX + move_x)][(int)(data->posY)]))
+			data->posX += move_x;
+		if (!cub_atoi(data->worldMap[(int)(data->posX)][(int)(data->posY + move_y)]))
+			data->posY += move_y;
+	}
 	//오른쪽 회전
     if (data->rotate_right)
     {
@@ -254,6 +297,8 @@ int main_loop(t_data *data)
         //     default: color = 0xFFFF00;  break;
         // }
 		color = 0xFFFF00;
+		// color = create_trgb(0, 220, 100, 0);
+		// color = create_trgb(0, 225, 30, 0);
 		// 벽면 음영 처리
         if (side == 1) color = color / 2;
 		// 수직선 그리기
@@ -265,6 +310,16 @@ int main_loop(t_data *data)
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     return (0);
 }
+
+
+int	handle_exit(int num)
+{
+
+	exit(0);
+	return (0);
+}
+
+
 
 int	map(t_info	info)
 {
@@ -286,12 +341,21 @@ int	map(t_info	info)
 
     data.move_forward = 0;
     data.move_backward = 0;
+    data.move_left = 0;
+    data.move_right = 0;
     data.rotate_left = 0;
     data.rotate_right = 0;
 
 	data.mapHeight = info.map_h;
 	data.mapWidth = info.map_w;
 
+
+	data.floor[0] = info.f[0];
+	data.floor[1] = info.f[1];
+	data.floor[2] = info.f[2];
+	data.ceiling[0] = info.c[0];
+	data.ceiling[1] = info.c[1];
+	data.ceiling[2] = info.c[2];
 	// for(int i = 0; i < data.mapHeight; i++)
 	// {
 	// 	for(int j = 0; j < data.mapWidth; j++)
@@ -305,6 +369,7 @@ int	map(t_info	info)
     mlx_loop_hook(data.mlx, main_loop, &data);
     mlx_hook(data.win, 2, 1L<<0, key_press, &data);
     mlx_hook(data.win, 3, 1L<<1, key_release, &data);
+	mlx_hook(data.win, 17, 0, &handle_exit, 0);
     mlx_loop(data.mlx);
 
     return (0);
