@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:09:09 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 17:57:10 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 19:24:26 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ long long	ft_atoi_cub(const char *str, int cnt)
 	}
 	if (cnt > 1)
 		num = 0;
-	if (num < 0 || num > 255)
+	if (num * neg < 0 || num * neg > 255)
 		parsing_error("color num error", 2);
 	return (num * neg);
 }

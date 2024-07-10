@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 19:14:34 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 19:22:21 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	init_color(t_info *info, char **tmp, int flag)
 	i = -1;
 	while (++i < 3)
 	{
+		if (ft_strlen_cub(tmp[i]) <= 0)
+			parsing_error("color num error", 3);
 		if (i == 0 && flag == 0)
 			info->f[i] = ft_atoi_cub (tmp[i] + 1, 0);
 		else if (flag == 0)
