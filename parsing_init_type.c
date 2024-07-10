@@ -6,45 +6,33 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 16:26:03 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 19:14:34 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 #include "parsing.h"
 
-void	init_color(t_info *info, char *s, int flag)
+void	init_color(t_info *info, char **tmp, int flag)
 {
-	char	**tmp;
 	int		i;
 
-	tmp = ft_split(s, ',');
 	i = 0;
 	while (tmp[i])
 		i++;
 	if (i != 3)
 		parsing_error("color num erorr", 2);
-	if (flag == 0)
+	i = -1;
+	while (++i < 3)
 	{
-		i = -1;
-		while (++i < 3)
-		{
-			if (i == 0)
-				info->f[i] = ft_atoi_cub (tmp[i] + 1);
-			else
-				info->f[i] = ft_atoi_cub(tmp[i]);
-		}
-	}
-	if (flag == 1)
-	{
-		i = -1;
-		while (++i < 3)
-		{
-			if (i == 0)
-				info->c[i] = ft_atoi_cub(tmp[i] + 1);
-			else
-				info->c[i] = ft_atoi_cub(tmp[i]);
-		}
+		if (i == 0 && flag == 0)
+			info->f[i] = ft_atoi_cub (tmp[i] + 1, 0);
+		else if (flag == 0)
+			info->f[i] = ft_atoi_cub(tmp[i], 0);
+		else if (i == 0 && flag == 1)
+			info->c[i] = ft_atoi_cub(tmp[i] + 1, 0);
+		else if (flag == 1)
+			info->c[i] = ft_atoi_cub(tmp[i], 0);
 	}
 	i = -1;
 	while (++i < 3)
@@ -91,9 +79,9 @@ int	init_six(t_info *info, char *str, int i)
 	else if (ft_strncmp(tmp[0], "EA", 3) == 0)
 		init_texture(info, str);
 	else if (ft_strncmp(tmp[0], "F", 2) == 0)
-		init_color(info, str, 0);
+		init_color(info, ft_split(str, ','), 0);
 	else if (ft_strncmp(tmp[0], "C", 2) == 0)
-		init_color(info, str, 1);
+		init_color(info, ft_split(str, ','), 1);
 	else
 		return (0);
 	while (--i >= 0)
