@@ -12,6 +12,12 @@
 //화면 크기와 맵 크기 정의
 #define screenWidth 640
 #define screenHeight 480
+#define TURN_LEFT 123
+#define TURN_RIGHT 124
+#define MOVE_FORWARD 13
+#define MOVE_BACKWARD 1
+#define MOVE_LEFT 0
+#define MOVE_RIGHT 2
 // #define mapWidth 24
 // #define mapHeight 24
 
@@ -32,35 +38,6 @@ long long	cub_atoi(char str)
 		num = 0;
 	return (num * neg);
 }
-
-
-//2d 맵 
-// int worldMap[mapWidth][mapHeight] = {
-//     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//     {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-//     {1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-//     {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-// };
 
 typedef struct {
     void *mlx;
@@ -111,10 +88,10 @@ void clear_screen(t_data *data)
 //키 이벤트 처리
 int key_press(int keycode, t_data *data)
 {
-    if (keycode == 13) data->move_forward = 1;
-    if (keycode == 1)  data->move_backward = 1;
-    if (keycode == 0)  data->rotate_left = 1;
-    if (keycode == 2)  data->rotate_right = 1;
+    if (keycode == MOVE_FORWARD) data->move_forward = 1;
+    if (keycode == MOVE_BACKWARD)  data->move_backward = 1;
+    if (keycode == TURN_LEFT)  data->rotate_left = 1;
+    if (keycode == TURN_RIGHT)  data->rotate_right = 1;
     if (keycode == 53) exit(0);
 
     move_player(data);
@@ -126,10 +103,10 @@ int key_press(int keycode, t_data *data)
 // 키 누름 해제 이벤트 처리
 int key_release(int keycode, t_data *data)
 {
-    if (keycode == 13) data->move_forward = 0;
-    if (keycode == 1)  data->move_backward = 0;
-    if (keycode == 0)  data->rotate_left = 0;
-    if (keycode == 2)  data->rotate_right = 0;
+    if (keycode == MOVE_FORWARD) data->move_forward = 0;
+    if (keycode == MOVE_BACKWARD)  data->move_backward = 0;
+    if (keycode == TURN_LEFT)  data->rotate_left = 0;
+    if (keycode == TURN_RIGHT)  data->rotate_right = 0;
 
     main_loop(data);
 
@@ -268,14 +245,15 @@ int main_loop(t_data *data)
 
 		// 벽 색상
         int color;
-        switch(cub_atoi(data->worldMap[mapX][mapY]))
-        {
-            case 1:  color = 0xFF0000;  break;
-            case 2:  color = 0x00FF00;  break;
-            case 3:  color = 0x0000FF;  break;
-            case 4:  color = 0xFFFFFF;  break;
-            default: color = 0xFFFF00;  break;
-        }
+        // switch(cub_atoi(data->worldMap[mapX][mapY]))
+        // {
+        //     case 1:  color = 0xFF0000;  break;
+        //     case 2:  color = 0x00FF00;  break;
+        //     case 3:  color = 0x0000FF;  break;
+        //     case 4:  color = 0xFFFFFF;  break;
+        //     default: color = 0xFFFF00;  break;
+        // }
+		color = 0xFFFF00;
 		// 벽면 음영 처리
         if (side == 1) color = color / 2;
 		// 수직선 그리기
