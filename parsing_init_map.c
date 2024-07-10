@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:31:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 14:36:15 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 16:43:32 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,9 @@ void	init_map_oz(t_info *info, int fd, char *str)
 	while (i < info->map_h)
 	{
 		j = 0;
-		while (str[j] && j < info->map_w)
+		while (str[j] && str[j] != '\n' && j < info->map_w)
 		{
 			info->map[i][j] = str[j];
-			if (str)
 			j++;
 		}
 		while (j < info->map_w)
