@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub.c                                              :+:      :+:    :+:   */
+/*   parsing_check_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/06 13:21:05 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 17:27:58 by jimchoi          ###   ########.fr       */
+/*   Created: 2024/07/10 14:41:50 by jeakim            #+#    #+#             */
+/*   Updated: 2024/07/10 14:48:45 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 #include "parsing.h"
 
-void	parsing_error(char *error_msg, int flag)
+void	map_bfs()
 {
-	printf("Error:%d %s\n", flag, error_msg);
-	exit(1);
+
 }
 
-void	check_leak()
+
+void	check_map()
 {
-	system("leaks cub3D");
-}
-
-int	map(t_info	info);
-
-int	main(int argc, char *argv[])
-{
-	check_leak();
-	t_info	info;
-
-	parsing(argc, argv, &info);
-	map(info);
-
-	exit(0);
+	map_bfs();
 }

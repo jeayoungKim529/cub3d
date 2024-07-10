@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_cub.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 13:53:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/10 16:59:48 by jimchoi          ###   ########.fr       */
+/*   Created: 2024/07/10 13:09:09 by jeakim            #+#    #+#             */
+/*   Updated: 2024/07/10 14:38:11 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub.h"
+#include "parsing.h"
 
-long long	ft_atoi(const char *str)
+int	ft_isdigit_cub(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else if (c == '\n' || c == '\t' || c == '\v'
+		|| c == '\f' || c == '\r' || c == ' ')
+		return (0);
+	parsing_error("color num erorr", 2);
+	return (0);
+}
+
+long long	ft_atoi_cub(const char *str)
 {
 	long long	neg;
 	long long	num;
@@ -31,12 +43,24 @@ long long	ft_atoi(const char *str)
 		cnt++;
 		str++;
 	}
-	while ('0' <= *str && *str <= '9')
+	while (*str && ft_isdigit_cub(*str) == 1)
 	{
-		num = num * 10 + *str - '0';
+		num = num * 10 + (*str - '0');
 		str++;
 	}
 	if (cnt > 1)
 		num = 0;
 	return (num * neg);
+}
+
+size_t	ft_strlen_cub(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	if (!s || s[len] == '\0')
+		return (0);
+	while (s[len] != '\0' && s[len] != '\n')
+		len++;
+	return (len);
 }

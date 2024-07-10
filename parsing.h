@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:16:31 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/08 18:41:32 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 14:42:46 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,21 @@
 # include <sys/types.h>
 // # include <sys/stat.h>
 
-//parsing_init_type.c
-void	check_cub_file(int argc, char *argv[], t_info *info);
-int		init_type(t_info *info, char *str, int i);
-int		init_six(t_info *info);
-//parsing_init_map.c
-void	init_map(t_info *info, int row);
+//ft_atoi_cub.c
+size_t		ft_strlen_cub(const char *s);
+long long	ft_atoi_cub(const char *str);
 //check_only_six.c
-int		ft_max(int a, int b);
-int		check_only_six_util(char *s);
-void	check_only_six(char *argv[]);
+int			ft_max(int a, int b);
+int			check_only_six_util(char *s);
+void		check_only_six(char *argv[]);
+//parsing_init_type.c
+void		check_cub_file(int argc, char *argv[], t_info *info);
+int			init_six(t_info *info, char *str, int i);
+int			init_type(t_info *info);
+//parsing_init_map.c
+void		init_map(t_info *info, int row);
+//parsing_check_map.c
+//parsing_init_user.c
+void 		init_user(t_info *info);
 
 #endif
