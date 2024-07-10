@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/08 19:05:37 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:55:13 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,31 @@
 
 # include "libft_src/libft.h"
 # include <stdio.h>
+# include <string.h>
+# include <errno.h>
+
+typedef enum e_true
+{
+	FALSE,
+	TRUE
+}	t_true;
+
+typedef enum e_direction
+{
+	NORTH,
+	SOUTH,
+	EAST,
+	WEST
+}	t_direction;
 
 typedef struct s_info
 {
 	size_t			map_w;
 	size_t			map_h;
 	char			**map;
+	t_direction		direction;
+	size_t			user_x;
+	size_t			user_y;
 	char			*file;
 	char			*no;
 	char			*so;
@@ -31,7 +50,7 @@ typedef struct s_info
 }	t_info;
 
 //cub.c
-void	parsing_error(int flag);
+void	parsing_error(char *error_msg, int flag);
 //parsing.c
 void	parsing(int argc, char *argv[], t_info *info);
 

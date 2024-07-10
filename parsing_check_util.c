@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_check_only_six.c                           :+:      :+:    :+:   */
+/*   parsing_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:43:09 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/08 18:40:51 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 14:36:56 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	check_only_six_util(char *s)
 	int	len;
 
 	len = 0;
-	while (s[len])
+	while (s[len] && s[len] !='\n')
 	{
 		if (s[len] != '0' && s[len] != '1' && s[len] != 'N' && \
 			s[len] != 'S' && s[len] != 'E' && s[len] != 'W' && is_whitespace(s[len]) != 1)

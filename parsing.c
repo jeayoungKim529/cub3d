@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 14:55:55 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 11:16:33 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 15:08:00 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ void	printf_info(t_info *info)
 	printf("map_w : %zu\n", info->map_w);
 	printf("map_h : %zu\n", info->map_h);
 	printf("\n");
-	printf_map(info);
+	printf("direction : %c\n", (char)info->direction);
+	printf("user_x : %zu\n", info->user_x);
+	printf("user_y : %zu\n", info->user_y);
+	printf("\n");
+	// printf_map(info);
 }
 
 void	check_cub_file(int argc, char *argv[], t_info *info)
@@ -63,20 +67,22 @@ void	check_cub_file(int argc, char *argv[], t_info *info)
 	char	**s;
 
 	if (argc != 2)
-		parsing_error(0);
+		parsing_error(strerror(errno), 0);
 	s = ft_split(argv[1], '.');
 	num = 0;
 	while (s[num])
 		num++;
 	if (ft_strncmp(s[num - 1], "cub", 4) != 0)
-		parsing_error(0);
+		parsing_error(strerror(errno), 0);
 	info->file = ft_strdup(argv[1]);
 	if (!info->file)
-		parsing_error(0);
+		parsing_error(strerror(errno), 0);
 }
 
 void	init_info(t_info *info)
 {
+	int	i;
+
 	info->map_w = 0;
 	info->map_h = 0;
 	info->map = NULL;
@@ -85,6 +91,12 @@ void	init_info(t_info *info)
 	info->so = NULL;
 	info->we = NULL;
 	info->ea = NULL;
+	i = -1;
+	while (++i < 3)
+		info->f[i] = 0;
+	i = -1;
+	while (++i < 3)
+		info->c[i] = 0;
 }
 
 void	parsing(int argc, char *argv[], t_info *info)
@@ -95,6 +107,7 @@ void	parsing(int argc, char *argv[], t_info *info)
 	check_cub_file(argc, argv, info);
 	row = init_type(info);
 	init_map(info, row);
-	printf_info(info);
 	// check_wall();
+	init_user(info);
+	printf_info(info);
 }
