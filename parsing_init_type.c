@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 14:37:26 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 16:26:03 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,25 @@ void	init_color(t_info *info, char *s, int flag)
 		parsing_error("color num erorr", 2);
 	if (flag == 0)
 	{
-		i = 0;
+		i = -1;
 		while (++i < 3)
-			info->f[i] = ft_atoi_cub(tmp[i]);
+		{
+			if (i == 0)
+				info->f[i] = ft_atoi_cub (tmp[i] + 1);
+			else
+				info->f[i] = ft_atoi_cub(tmp[i]);
+		}
 	}
 	if (flag == 1)
 	{
-		i = 0;
+		i = -1;
 		while (++i < 3)
-			info->c[i] = ft_atoi_cub(tmp[i]);
+		{
+			if (i == 0)
+				info->c[i] = ft_atoi_cub(tmp[i] + 1);
+			else
+				info->c[i] = ft_atoi_cub(tmp[i]);
+		}
 	}
 	i = -1;
 	while (++i < 3)
