@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:31:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 19:33:40 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 20:57:00 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	init_map_oz(t_info *info, int fd, char *str)
 	}
 }
 
-char	*return_str(t_info *info, int row, int fd)
+char	*return_str(int row, int fd)
 {
 	int		i;
 	char	*str;
@@ -96,19 +96,18 @@ char	*return_str(t_info *info, int row, int fd)
 void	init_map(t_info *info, int row)
 {
 	int		fd;
-	int		i;
 	char	*str;
 
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
 		parsing_error(strerror(errno), 2);
-	str = return_str(info, row, fd);
+	str = return_str(row, fd);
 	init_map_size(info, fd, str);
 	close(fd);
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
 		parsing_error(strerror(errno), 2);
-	str = return_str(info, row, fd);
+	str = return_str(row, fd);
 	init_map_oz(info, fd, str);
 	close(fd);
 }
