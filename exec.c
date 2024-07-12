@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/12 11:00:25 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/12 13:24:26 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ long long	cub_atoi(char str)
 	neg = 1;
 	if (str == ' ')
 		return (1);
+	else if (!ft_isdigit(str))
+		return (0);
 
 		num =str - '0';
 	if (cnt > 1)
@@ -83,8 +85,21 @@ int key_press(int keycode, t_data *data)
     if (keycode == MOVE_BACKWARD)  data->move_backward = 1;
     if (keycode == MOVE_LEFT)  data->move_left = 1;
     if (keycode == MOVE_RIGHT)  data->move_right = 1;
-    if (keycode == TURN_LEFT)  data->rotate_left = 1;
-    if (keycode == TURN_RIGHT)  data->rotate_right = 1;
+    if (keycode == TURN_LEFT)
+	{
+	  data->rotate_left = 1;
+	// printf("data->planeX : %f, data->planeY : %f\n", data->planeX, data->planeY);
+	// printf("data->dirX : %f, data->dirXY : %f\n", data->dirX, data->dirY);
+
+	}
+    if (keycode == TURN_RIGHT) 
+	{
+	 data->rotate_right = 1;
+	// printf("data->planeX : %f, data->planeY : %f\n", data->planeX, data->planeY);
+	// printf("data->dirX : %f, data->dirXY : %f\n", data->dirX, data->dirY);
+
+		
+	}
     if (keycode == 53) exit(0);
 
     move_player(data);
@@ -101,7 +116,12 @@ int key_release(int keycode, t_data *data)
 	if (keycode == MOVE_LEFT)  data->move_left = 0;
     if (keycode == MOVE_RIGHT)  data->move_right = 0;
     if (keycode == TURN_LEFT)  data->rotate_left = 0;
-    if (keycode == TURN_RIGHT)  data->rotate_right = 0;
+    if (keycode == TURN_RIGHT)
+	{
+	data->rotate_right = 0;
+	// printf("data->planeX : %f, data->planeY : %f\n", data->planeX, data->planeY);
+		
+	}  
 
     main_loop(data);
 
@@ -315,12 +335,54 @@ int	map(t_info	info)
     data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 
 	data.worldMap = info.map;
-    data.posX = info.user_x; // 위위치
-    data.posY = info.user_y; // 위위치
-    data.dirX = -1; // 방방향벡터 
-    data.dirY = 0; // 방방향벡터  
-    data.planeX = 0; // 카카메라 평면
+    data.posX = info.user_x; // 위치
+    data.posY = info.user_y; // 위치
+    data.dirX = -1; // 	방향벡터 
+    data.dirY = 0; // 방향벡터  
+    // data.dirX = 0; // 방향벡터 
+    // data.dirY = 1; // 방향벡터  
+    data.planeX = 0; // 카메라 평면 노랑 1
     data.planeY = 0.66;
+    // data.planeX = 0.66; // 카메라 평면 2
+    // data.planeY = 0;
+    // data.planeX = 0; // 카메라 평면 3
+    // data.planeY = -0.66;
+    // data.planeX = -0.66; // 카메라 평면 4
+    // data.planeY = 0;
+
+printf("direction : %d\n ", info.direction);
+// if (info.direction == NORTH)
+if (info.direction == 'N')
+{
+	data.dirX = -1; // 방향벡터 
+    data.dirY = 0; // 방향벡터  
+	data.planeX = 0; // 카메라 평면 노랑 1
+    data.planeY = 0.66;
+}
+// else if (info.direction == SOUTH)
+else if (info.direction == 'S')
+{
+	data.dirX = 1; // 방향벡터 
+    data.dirY = 0; // 방향벡터  
+	data.planeX = 0; // 카메라 평면 노랑 1
+    data.planeY = -0.66;
+}
+// else if (info.direction == EAST)
+else if (info.direction == 'E')
+{
+	data.dirX = 0; // 방향벡터 
+    data.dirY = 1; // 방향벡터  
+	data.planeX = 0.66; // 카메라 평면 노랑 1
+    data.planeY = 0;
+}
+// else if (info.direction == WEST)
+else if (info.direction == 'W')
+{
+	data.dirX = 0; // 방향벡터 
+    data.dirY = -1; // 방향벡터  
+	data.planeX = -0.66; // 카메라 평면 노랑 1
+    data.planeY = 0;
+}
 
     data.move_forward = 0;
     data.move_backward = 0;
