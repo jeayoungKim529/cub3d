@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:41:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 19:29:10 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/12 16:02:19 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_four_wall(t_info *info, int x, int y)
 		cur_y = y + dy[i];
 		if (cur_x < 0 || cur_x >= info->map_h || cur_y < 0 || \
 				cur_y >= info->map_w)
-			continue ;
+			return (1);
 		if (info->map[cur_x][cur_y] != '0' && info->map[cur_x][cur_y] != '1'\
 				&& is_direction(info->map[cur_x][cur_y]) != 1)
 			return (1);
