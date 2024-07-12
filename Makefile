@@ -6,7 +6,7 @@
 #    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/10 19:10:30 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/12 15:30:27 by jimchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,14 @@ SRCS = cub.c\
 		parsing_init_map.c\
 		parsing_check_map.c\
 		parsing_init_user.c\
-		exec.c
+		\
+		\
+		exec.c \
+		exec_move.c \
+		exec_key_handling.c \
+		exec_image.c \
+		exec_utils.c \
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -55,7 +62,7 @@ clean:
 	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
-	@rm -f last_bonus
+	@rm -f libmlx.dylib
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
 

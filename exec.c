@@ -6,23 +6,12 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/12 13:24:26 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/12 15:26:28 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-//화면 크기와 맵 크기 정의
-// #define SCREEN_WIDTH 640
-// #define SCREEN_HEIGHT 480
-// #define TURN_LEFT 123
-// #define TURN_RIGHT 124
-// #define MOVE_FORWARD 13
-// #define MOVE_BACKWARD 1
-// #define MOVE_LEFT 0
-// #define MOVE_RIGHT 2
-// #define mapWidth 24
-// #define mapHeight 24
 
 long long	cub_atoi(char str)
 {
@@ -302,8 +291,6 @@ int main_loop(t_data *data)
             color = 0xFF0000;
 		// color = create_trgb(0, 220, 100, 0);
 		// color = create_trgb(0, 225, 30, 0);
-		// 벽면 음영 처리
-        // if (side == 1) color = color / 2;
 		// 수직선 그리기
         for (int y = drawStart; y < drawEnd; y++)
             my_mlx_pixel_put(data, x, y, color);
