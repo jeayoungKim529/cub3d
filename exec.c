@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/10 20:57:12 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/12 11:00:25 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,6 +231,7 @@ int main_loop(t_data *data)
             sideDistY = (mapY + 1.0 - data->posY) * deltaDistY;
         }
 
+        int wall;
         while (hit == 0)
         {
             if (sideDistX < sideDistY)
@@ -238,12 +239,18 @@ int main_loop(t_data *data)
                 sideDistX += deltaDistX;
                 mapX += stepX;
                 side = 0;
+                wall = 0;
+                if (stepX > 0)
+                    wall = 1;
             }
             else
             {
                 sideDistY += deltaDistY;
                 mapY += stepY;
                 side = 1;
+                wall = 2;
+                if (stepY > 0)
+                    wall = 3;
             }
             if (cub_atoi(data->worldMap[mapX][mapY]) > 0) hit = 1;
         }
@@ -265,19 +272,18 @@ int main_loop(t_data *data)
 
 		// 벽 색상
         int color;
-        // switch(cub_atoi(data->worldMap[mapX][mapY]))
-        // {
-        //     case 1:  color = 0xFF0000;  break;
-        //     case 2:  color = 0x00FF00;  break;
-        //     case 3:  color = 0x0000FF;  break;
-        //     case 4:  color = 0xFFFFFF;  break;
-        //     default: color = 0xFFFF00;  break;
-        // }
-		color = 0xFFFF00;
+        if (wall == 0)
+            color = 0xFFFF00;
+        else if (wall == 1)
+            color = 0xFFFFFF;
+        else if (wall == 2)
+            color = 0x0000FF;
+        else if (wall == 3)
+            color = 0xFF0000;
 		// color = create_trgb(0, 220, 100, 0);
 		// color = create_trgb(0, 225, 30, 0);
 		// 벽면 음영 처리
-        if (side == 1) color = color / 2;
+        // if (side == 1) color = color / 2;
 		// 수직선 그리기
         for (int y = drawStart; y < drawEnd; y++)
             my_mlx_pixel_put(data, x, y, color);
