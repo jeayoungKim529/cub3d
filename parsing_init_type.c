@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 19:22:21 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/19 15:05:51 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ void	init_texture(t_info *info, char *str)
 	if (i != 2)
 		parsing_error("texture file pass erorr", 2);
 	if (ft_strncmp(tmp[0], "NO", 3) == 0)
-		info->no = ft_strdup(tmp[1]);
+		info->no = ft_strdup_cub(tmp[1]);
 	else if (ft_strncmp(tmp[0], "SO", 3) == 0)
-		info->so = ft_strdup(tmp[1]);
+		info->so = ft_strdup_cub(tmp[1]);
 	else if (ft_strncmp(tmp[0], "WE", 3) == 0)
-		info->we = ft_strdup(tmp[1]);
+		info->we = ft_strdup_cub(tmp[1]);
 	else if (ft_strncmp(tmp[0], "EA", 3) == 0)
-		info->ea = ft_strdup(tmp[1]);
+		info->ea = ft_strdup_cub(tmp[1]);
 	while (--i >= 0)
 		free(tmp[i]);
 	free(tmp);
