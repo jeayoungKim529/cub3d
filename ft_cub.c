@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:09:09 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 14:38:11 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/19 15:05:23 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,11 @@ int	ft_isdigit_cub(char c)
 	return (0);
 }
 
-long long	ft_atoi_cub(const char *str)
+long long	ft_atoi_cub(const char *str, int cnt)
 {
 	long long	neg;
 	long long	num;
-	int			cnt;
 
-	cnt = 0;
 	num = 0;
 	neg = 1;
 	while (*str == '\n' || *str == '\t' || *str == '\v'
@@ -50,6 +48,8 @@ long long	ft_atoi_cub(const char *str)
 	}
 	if (cnt > 1)
 		num = 0;
+	if (num * neg < 0 || num * neg > 255)
+		parsing_error("color num error", 2);
 	return (num * neg);
 }
 
@@ -63,4 +63,24 @@ size_t	ft_strlen_cub(const char *s)
 	while (s[len] != '\0' && s[len] != '\n')
 		len++;
 	return (len);
+}
+
+char	*ft_strdup_cub(char *src)
+{
+	size_t	i;
+	size_t	len;
+	char	*str;
+
+	i = 0;
+	len = ft_strlen_cub(src);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (0);
+	while (i < len)
+	{
+		str[i] = src[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

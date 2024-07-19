@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 14:55:55 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 15:08:00 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/10 17:35:37 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	printf_info(t_info *info)
 	printf("user_x : %zu\n", info->user_x);
 	printf("user_y : %zu\n", info->user_y);
 	printf("\n");
-	// printf_map(info);
+	printf_map(info);
 }
 
 void	check_cub_file(int argc, char *argv[], t_info *info)
@@ -107,7 +107,7 @@ void	parsing(int argc, char *argv[], t_info *info)
 	check_cub_file(argc, argv, info);
 	row = init_type(info);
 	init_map(info, row);
-	// check_wall();
+	check_map(info);
 	init_user(info);
-	printf_info(info);
+	// printf_info(info);
 }

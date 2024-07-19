@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:35:25 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 15:06:35 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/12 15:50:57 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	check_user_location(t_info *info)
 			{
 				info->user_x = i;
 				info->user_y = j;
+				info->map[i][j] = '0';
 				return ;
 			}
 		}
