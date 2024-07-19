@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
+#    By: jimchoi <jimchoi@student.42seoul.kr>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/12 15:30:27 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/12 18:49:05 by jimchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,10 +36,10 @@ SRCS = cub.c\
 		\
 		\
 		exec.c \
-		exec_move.c \
-		exec_key_handling.c \
-		exec_image.c \
-		exec_utils.c \
+		# exec_move.c \
+		# exec_key_handling.c \
+		# exec_image.c \
+		# exec_utils.c \
 
 
 OBJS = $(SRCS:.c=.o)
@@ -60,6 +60,7 @@ $(NAME): $(OBJS)
 clean:
 	@rm -rf $(OBJS)
 	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLXDIR) clean
 
 fclean: clean
 	@rm -f libmlx.dylib

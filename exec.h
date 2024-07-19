@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/12 11:04:54 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/19 14:32:15 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,27 @@
 
 
 //화면 크기와 맵 크기 정의
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+// #define SCREEN_WIDTH 640
+// #define SCREEN_HEIGHT 480
 #define TURN_LEFT 123
 #define TURN_RIGHT 124
 #define MOVE_FORWARD 13
 #define MOVE_BACKWARD 1
 #define MOVE_LEFT 0
 #define MOVE_RIGHT 2
+
+typedef struct s_img
+{
+	void		*ptr;
+	int			*data;
+	int			width;
+	int			height;
+
+
+	int			size_l;
+	int			bpp;
+	int			endian;
+}				t_img;
 
 
 typedef struct {
@@ -54,6 +67,7 @@ typedef struct {
 	int mapWidth;
 	unsigned char	floor[3];
 	unsigned char	ceiling[3];
+    t_img texture[4];
 } t_data;
 
 

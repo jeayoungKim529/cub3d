@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/12 15:26:28 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/19 14:36:52 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
 
 long long	cub_atoi(char str)
 {
@@ -47,6 +49,17 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
     char *dst;
     dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
     *(unsigned int*)dst = color;
+    // *(unsigned int*)dst = data->texture.data[y % data->texture.height * data->texture.width + (x % 64)];
+}
+void my_mlx_pixel_put2(t_data *data, int x, int y, int color, int draw)
+{
+    char *dst;
+    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+    // *(unsigned int*)dst = color;
+    // *(unsigned int*)dst = data->texture.data[y / (data->texture.height) * data->texture.width + (x % 64)];
+
+    // data->texture.data[y / (draw / data->texture.height) * data->texture.width + (x / 64)];
+    // *(unsigned int*)dst = data->texture.data[y % data->texture.height * data->texture.width + (x % 64)];
 }
 
 //화면을 검정색으로
@@ -272,31 +285,51 @@ int main_loop(t_data *data)
 
 
 		//화면에 그릴 벽의 높이
+               // 벽 높이 계산 수정
         int lineHeight = (int)(SCREEN_HEIGHT / perpWallDist);
 
+        // 드로잉 범위 계산 수정
         int drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
         if (drawStart < 0) drawStart = 0;
         int drawEnd = lineHeight / 2 + SCREEN_HEIGHT / 2;
         if (drawEnd >= SCREEN_HEIGHT) drawEnd = SCREEN_HEIGHT - 1;
 
 		// 벽 색상
-        int color;
-        if (wall == 0)
-            color = 0xFFFF00;
-        else if (wall == 1)
-            color = 0xFFFFFF;
-        else if (wall == 2)
-            color = 0x0000FF;
-        else if (wall == 3)
-            color = 0xFF0000;
-		// color = create_trgb(0, 220, 100, 0);
-		// color = create_trgb(0, 225, 30, 0);
-		// 수직선 그리기
-        for (int y = drawStart; y < drawEnd; y++)
-            my_mlx_pixel_put(data, x, y, color);
-    }
+        // int color;
+        // if (wall == 0)
+        //     color = 0xFFFF00;
+        // else if (wall == 1)
+        //     color = 0xFFFFFF;
+        // else if (wall == 2)
+        //     color = 0x0000FF;
+        // else if (wall == 3)
+        //     color = 0xFF0000;
 
-	//렌더링 된 이미지 윈도우에 올리기
+       double wallX;
+        if (side == 0) wallX = data->posY + perpWallDist * rayDirY;
+        else           wallX = data->posX + perpWallDist * rayDirX;
+        wallX -= floor(wallX);
+
+        int texX = (int)(wallX * (double)data->texture[wall].width);
+        if (side == 0 && rayDirX > 0) texX = data->texture[wall].width - texX - 1;
+        if (side == 1 && rayDirY < 0) texX = data->texture[wall].width - texX - 1;
+
+         double step = 1.0 * data->texture[wall].height / lineHeight;
+        double texPos = (drawStart - SCREEN_HEIGHT / 2 + lineHeight / 2) * step;
+
+        for (int y = drawStart; y < drawEnd; y++)
+        {
+            int texY = (int)texPos % ((data->texture[wall].height - 1));
+            texPos += step;
+            int color = data->texture[wall].data[data->texture[wall].height * texY + texX];
+            // int color = *(unsigned int*)(data->texture.data + (data->texture.height * data->texture.size_l + texX * (data->texture.bpp / 8)));
+
+            // 그림자 효과 (선택적)
+            // if (side == 1) color = (color >> 1) & 8355711;
+
+            my_mlx_pixel_put(data, x, y, color);
+        }
+    }
     mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
     return (0);
 }
@@ -309,6 +342,20 @@ int	handle_exit(int num)
 	return (0);
 }
 
+
+void textures(t_data *data)
+{
+    
+data->texture[0].ptr = mlx_xpm_file_to_image(data->mlx, "../mlx_example/textures/wall_s.xpm", &data->texture[0].width, &(data->texture[0].height));
+    data->texture[0].data = (int *)mlx_get_data_addr(data->texture[0].ptr, &data->texture[0].bpp, &data->texture[0].size_l, &data->texture[0].endian);
+data->texture[1].ptr = mlx_xpm_file_to_image(data->mlx, "../mlx_example/textures/wall_n.xpm", &data->texture[1].width, &(data->texture[1].height));
+    data->texture[1].data = (int *)mlx_get_data_addr(data->texture[1].ptr, &data->texture[1].bpp, &data->texture[1].size_l, &data->texture[1].endian);
+data->texture[2].ptr = mlx_xpm_file_to_image(data->mlx, "../mlx_example/textures/wall_e.xpm", &data->texture[2].width, &(data->texture[2].height));
+    data->texture[2].data = (int *)mlx_get_data_addr(data->texture[2].ptr, &data->texture[2].bpp, &data->texture[2].size_l, &data->texture[2].endian);
+data->texture[3].ptr = mlx_xpm_file_to_image(data->mlx, "../mlx_example/textures/wall_w.xpm", &data->texture[3].width, &(data->texture[3].height));
+    data->texture[3].data = (int *)mlx_get_data_addr(data->texture[3].ptr, &data->texture[3].bpp, &data->texture[3].size_l, &data->texture[3].endian);
+
+}
 
 
 int	map(t_info	info)
@@ -326,16 +373,8 @@ int	map(t_info	info)
     data.posY = info.user_y; // 위치
     data.dirX = -1; // 	방향벡터 
     data.dirY = 0; // 방향벡터  
-    // data.dirX = 0; // 방향벡터 
-    // data.dirY = 1; // 방향벡터  
     data.planeX = 0; // 카메라 평면 노랑 1
     data.planeY = 0.66;
-    // data.planeX = 0.66; // 카메라 평면 2
-    // data.planeY = 0;
-    // data.planeX = 0; // 카메라 평면 3
-    // data.planeY = -0.66;
-    // data.planeX = -0.66; // 카메라 평면 4
-    // data.planeY = 0;
 
 printf("direction : %d\n ", info.direction);
 // if (info.direction == NORTH)
@@ -389,11 +428,16 @@ else if (info.direction == 'W')
 	data.ceiling[1] = info.c[1];
 	data.ceiling[2] = info.c[2];
 
+    textures(&data);
+    // data.texture.ptr = mlx_xpm_file_to_image(data.mlx, "../mlx_example/textures/wall_n.xpm", &data.texture.width, &(data.texture.height));
+    // data.texture.data = (int *)mlx_get_data_addr(data.texture.ptr, &data.texture.bpp, &data.texture.size_l, &data.texture.endian);
 
+    
     mlx_loop_hook(data.mlx, main_loop, &data);
     mlx_hook(data.win, 2, 1L<<0, key_press, &data);
     mlx_hook(data.win, 3, 1L<<1, key_release, &data);
 	mlx_hook(data.win, 17, 0, &handle_exit, 0);
+    // mlx_put_image_to_window(data.mlx, data.win, data.texture.ptr, 64, 64);
     mlx_loop(data.mlx);
 
     return (0);
