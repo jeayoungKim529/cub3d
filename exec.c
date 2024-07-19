@@ -6,14 +6,13 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/19 15:18:00 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/19 17:48:12 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "exec.h"
 
-#define SCREEN_WIDTH 640
-#define SCREEN_HEIGHT 480
+
 
 long long	cub_atoi(char str)
 {
@@ -36,89 +35,16 @@ long long	cub_atoi(char str)
 }
 
 
-int	create_rgb(int r, int g, int b)
-{
-	return (r << 16 | g << 8 | b);
-}
+
 void move_player(t_data *data);
 int main_loop(t_data *data);
 
 //픽셀 색상 지정
-void my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-    char *dst;
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    *(unsigned int*)dst = color;
-    // *(unsigned int*)dst = data->texture.data[y % data->texture.height * data->texture.width + (x % 64)];
-}
+
 
 //화면을 검정색으로
-void clear_screen(t_data *data)
-{
-	for (int x = 0; x < SCREEN_WIDTH; x++)
-    {
-		for (int y = 0; y < SCREEN_HEIGHT / 2; y++)
-        {
-            my_mlx_pixel_put(data, x, y, create_rgb(data->ceiling[0], data->ceiling[1],data->ceiling[2]));  // 0x000000은 검은색
-        }
-    }
-	for (int x = 0; x < SCREEN_WIDTH; x++)
-    {
-		for (int y = SCREEN_HEIGHT / 2; y < SCREEN_HEIGHT; y++)
-        {
-            my_mlx_pixel_put(data, x, y, create_rgb(data->floor[0], data->floor[1],data->floor[2]));  // 0x000000은 검은색
-        }
-    }
-}
-//키 이벤트 처리
-int key_press(int keycode, t_data *data)
-{
-    if (keycode == MOVE_FORWARD) data->move_forward = 1;
-    if (keycode == MOVE_BACKWARD)  data->move_backward = 1;
-    if (keycode == MOVE_LEFT)  data->move_left = 1;
-    if (keycode == MOVE_RIGHT)  data->move_right = 1;
-    if (keycode == TURN_LEFT)
-	{
-	  data->rotate_left = 1;
-	// printf("data->planeX : %f, data->planeY : %f\n", data->planeX, data->planeY);
-	// printf("data->dirX : %f, data->dirXY : %f\n", data->dirX, data->dirY);
 
-	}
-    if (keycode == TURN_RIGHT) 
-	{
-	 data->rotate_right = 1;
-	// printf("data->planeX : %f, data->planeY : %f\n", data->planeX, data->planeY);
-	// printf("data->dirX : %f, data->dirXY : %f\n", data->dirX, data->dirY);
 
-		
-	}
-    if (keycode == 53) exit(0);
-
-    move_player(data);
-
-    clear_screen(data);
-
-    return (0);
-}
-// 키 누름 해제 이벤트 처리
-int key_release(int keycode, t_data *data)
-{
-    if (keycode == MOVE_FORWARD) data->move_forward = 0;
-    if (keycode == MOVE_BACKWARD)  data->move_backward = 0;
-	if (keycode == MOVE_LEFT)  data->move_left = 0;
-    if (keycode == MOVE_RIGHT)  data->move_right = 0;
-    if (keycode == TURN_LEFT)  data->rotate_left = 0;
-    if (keycode == TURN_RIGHT)
-	{
-	data->rotate_right = 0;
-	// printf("data->planeX : %f, data->planeY : %f\n", data->planeX, data->planeY);
-		
-	}  
-
-    main_loop(data);
-
-    return (0);
-}
 //플레이어 이동 및 회전
 void move_player(t_data *data)
 {
@@ -312,10 +238,6 @@ int main_loop(t_data *data)
             int texY = (int)texPos % ((data->texture[wall].height - 1));
             texPos += step;
             int color = data->texture[wall].data[data->texture[wall].height * texY + texX];
-            // int color = *(unsigned int*)(data->texture.data + (data->texture.height * data->texture.size_l + texX * (data->texture.bpp / 8)));
-
-            // 그림자 효과 (선택적)
-            // if (side == 1) color = (color >> 1) & 8355711;
 
             my_mlx_pixel_put(data, x, y, color);
         }
@@ -325,107 +247,27 @@ int main_loop(t_data *data)
 }
 
 
-int	handle_exit(int num)
-{
-
-	exit(0);
-	return (0);
-}
 
 
-void textures(t_data *data, t_info *info)
-{
-    printf("Texture s |%s|\n", info->so);
-data->texture[0].ptr = mlx_xpm_file_to_image(data->mlx, info->so, &data->texture[0].width, &(data->texture[0].height));
-    data->texture[0].data = (int *)mlx_get_data_addr(data->texture[0].ptr, &data->texture[0].bpp, &data->texture[0].size_l, &data->texture[0].endian);
-data->texture[1].ptr = mlx_xpm_file_to_image(data->mlx, info->no, &data->texture[1].width, &(data->texture[1].height));
-    data->texture[1].data = (int *)mlx_get_data_addr(data->texture[1].ptr, &data->texture[1].bpp, &data->texture[1].size_l, &data->texture[1].endian);
-data->texture[2].ptr = mlx_xpm_file_to_image(data->mlx, info->ea, &data->texture[2].width, &(data->texture[2].height));
-    data->texture[2].data = (int *)mlx_get_data_addr(data->texture[2].ptr, &data->texture[2].bpp, &data->texture[2].size_l, &data->texture[2].endian);
-data->texture[3].ptr = mlx_xpm_file_to_image(data->mlx, info->we, &data->texture[3].width, &(data->texture[3].height));
-    data->texture[3].data = (int *)mlx_get_data_addr(data->texture[3].ptr, &data->texture[3].bpp, &data->texture[3].size_l, &data->texture[3].endian);
 
-}
+
 
 
 int	map(t_info	info)
 {
-    t_data data;
+	t_data data;
 
-
-    data.mlx = mlx_init();
-    data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Raycaster");
-    data.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-    data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
-
-	data.worldMap = info.map;
-    data.posX = info.user_x; // 위치
-    data.posY = info.user_y; // 위치
-    data.dirX = -1; // 	방향벡터 
-    data.dirY = 0; // 방향벡터  
-    data.planeX = 0; // 카메라 평면 노랑 1
-    data.planeY = 0.66;
-
-printf("direction : %d\n ", info.direction);
-// if (info.direction == NORTH)
-if (info.direction == 'N')
-{
-	data.dirX = -1; // 방향벡터 
-    data.dirY = 0; // 방향벡터  
-	data.planeX = 0; // 카메라 평면 노랑 1
-    data.planeY = 0.66;
-}
-// else if (info.direction == SOUTH)
-else if (info.direction == 'S')
-{
-	data.dirX = 1; // 방향벡터 
-    data.dirY = 0; // 방향벡터  
-	data.planeX = 0; // 카메라 평면 노랑 1
-    data.planeY = -0.66;
-}
-// else if (info.direction == EAST)
-else if (info.direction == 'E')
-{
-	data.dirX = 0; // 방향벡터 
-    data.dirY = 1; // 방향벡터  
-	data.planeX = 0.66; // 카메라 평면 노랑 1
-    data.planeY = 0;
-}
-// else if (info.direction == WEST)
-else if (info.direction == 'W')
-{
-	data.dirX = 0; // 방향벡터 
-    data.dirY = -1; // 방향벡터  
-	data.planeX = -0.66; // 카메라 평면 노랑 1
-    data.planeY = 0;
-}
-
-    data.move_forward = 0;
-    data.move_backward = 0;
-    data.move_left = 0;
-    data.move_right = 0;
-    data.rotate_left = 0;
-    data.rotate_right = 0;
-
-	data.mapHeight = info.map_h;
-	data.mapWidth = info.map_w;
-
-
-	data.floor[0] = info.f[0];
-	data.floor[1] = info.f[1];
-	data.floor[2] = info.f[2];
-	data.ceiling[0] = info.c[0];
-	data.ceiling[1] = info.c[1];
-	data.ceiling[2] = info.c[2];
-
-    textures(&data, &info);
-
-    
-    mlx_loop_hook(data.mlx, main_loop, &data);
-    mlx_hook(data.win, 2, 1L<<0, key_press, &data);
-    mlx_hook(data.win, 3, 1L<<1, key_release, &data);
+	data.mlx = mlx_init();
+	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Raycaster");
+	data.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
+	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
+	set_direction(&data, &info);
+	data_init(&data, &info);
+	textures_init(&data, &info);
+	mlx_loop_hook(data.mlx, main_loop, &data);
+	mlx_hook(data.win, 2, 1L<<0, key_press, &data);
+	mlx_hook(data.win, 3, 1L<<1, key_release, &data);
 	mlx_hook(data.win, 17, 0, &handle_exit, 0);
-    mlx_loop(data.mlx);
-
-    return (0);
+	mlx_loop(data.mlx);
+	return (0);
 }

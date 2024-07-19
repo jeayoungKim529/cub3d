@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/19 14:32:15 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/19 17:48:41 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@
 #define MOVE_BACKWARD 1
 #define MOVE_LEFT 0
 #define MOVE_RIGHT 2
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 480
 
 typedef struct s_img
 {
@@ -74,5 +76,27 @@ typedef struct {
 
 #include "cub.h"
 #include "parsing.h"
+
+
+//exec_direction
+void	set_direction(t_data *data, t_info *info);
+void	set_direction_n(t_data *data, t_info *info);
+void	set_direction_s(t_data *data, t_info *info);
+void	set_direction_w(t_data *data, t_info *info);
+void	set_direction_e(t_data *data, t_info *info);
+//exec_init
+void	data_init(t_data *data, t_info *info);
+void textures_init(t_data *data, t_info *info);
+//exec_key_handling
+int	handle_exit(int num);
+int key_press(int keycode, t_data *data);
+int key_release(int keycode, t_data *data);
+//exec_image
+int	create_rgb(int r, int g, int b);
+void my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void clear_screen(t_data *data);
+
+
+
 
 #endif
