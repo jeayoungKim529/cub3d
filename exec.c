@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/19 14:36:52 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/19 15:18:00 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,6 @@ void my_mlx_pixel_put(t_data *data, int x, int y, int color)
     char *dst;
     dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
     *(unsigned int*)dst = color;
-    // *(unsigned int*)dst = data->texture.data[y % data->texture.height * data->texture.width + (x % 64)];
-}
-void my_mlx_pixel_put2(t_data *data, int x, int y, int color, int draw)
-{
-    char *dst;
-    dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-    // *(unsigned int*)dst = color;
-    // *(unsigned int*)dst = data->texture.data[y / (data->texture.height) * data->texture.width + (x % 64)];
-
-    // data->texture.data[y / (draw / data->texture.height) * data->texture.width + (x / 64)];
     // *(unsigned int*)dst = data->texture.data[y % data->texture.height * data->texture.width + (x % 64)];
 }
 
@@ -343,16 +333,16 @@ int	handle_exit(int num)
 }
 
 
-void textures(t_data *data)
+void textures(t_data *data, t_info *info)
 {
-    
-data->texture[0].ptr = mlx_xpm_file_to_image(data->mlx, "../mlx_example/textures/wall_s.xpm", &data->texture[0].width, &(data->texture[0].height));
+    printf("Texture s |%s|\n", info->so);
+data->texture[0].ptr = mlx_xpm_file_to_image(data->mlx, info->so, &data->texture[0].width, &(data->texture[0].height));
     data->texture[0].data = (int *)mlx_get_data_addr(data->texture[0].ptr, &data->texture[0].bpp, &data->texture[0].size_l, &data->texture[0].endian);
-data->texture[1].ptr = mlx_xpm_file_to_image(data->mlx, "../mlx_example/textures/wall_n.xpm", &data->texture[1].width, &(data->texture[1].height));
+data->texture[1].ptr = mlx_xpm_file_to_image(data->mlx, info->no, &data->texture[1].width, &(data->texture[1].height));
     data->texture[1].data = (int *)mlx_get_data_addr(data->texture[1].ptr, &data->texture[1].bpp, &data->texture[1].size_l, &data->texture[1].endian);
-data->texture[2].ptr = mlx_xpm_file_to_image(data->mlx, "../mlx_example/textures/wall_e.xpm", &data->texture[2].width, &(data->texture[2].height));
+data->texture[2].ptr = mlx_xpm_file_to_image(data->mlx, info->ea, &data->texture[2].width, &(data->texture[2].height));
     data->texture[2].data = (int *)mlx_get_data_addr(data->texture[2].ptr, &data->texture[2].bpp, &data->texture[2].size_l, &data->texture[2].endian);
-data->texture[3].ptr = mlx_xpm_file_to_image(data->mlx, "../mlx_example/textures/wall_w.xpm", &data->texture[3].width, &(data->texture[3].height));
+data->texture[3].ptr = mlx_xpm_file_to_image(data->mlx, info->we, &data->texture[3].width, &(data->texture[3].height));
     data->texture[3].data = (int *)mlx_get_data_addr(data->texture[3].ptr, &data->texture[3].bpp, &data->texture[3].size_l, &data->texture[3].endian);
 
 }
@@ -428,16 +418,13 @@ else if (info.direction == 'W')
 	data.ceiling[1] = info.c[1];
 	data.ceiling[2] = info.c[2];
 
-    textures(&data);
-    // data.texture.ptr = mlx_xpm_file_to_image(data.mlx, "../mlx_example/textures/wall_n.xpm", &data.texture.width, &(data.texture.height));
-    // data.texture.data = (int *)mlx_get_data_addr(data.texture.ptr, &data.texture.bpp, &data.texture.size_l, &data.texture.endian);
+    textures(&data, &info);
 
     
     mlx_loop_hook(data.mlx, main_loop, &data);
     mlx_hook(data.win, 2, 1L<<0, key_press, &data);
     mlx_hook(data.win, 3, 1L<<1, key_release, &data);
 	mlx_hook(data.win, 17, 0, &handle_exit, 0);
-    // mlx_put_image_to_window(data.mlx, data.win, data.texture.ptr, 64, 64);
     mlx_loop(data.mlx);
 
     return (0);
