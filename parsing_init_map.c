@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:31:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 20:57:00 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/22 03:23:26 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*return_str(int row, int fd)
 
 	i = 0;
 	str = get_next_line(fd);
-	while (str && i < row)
+	while (str && i < row - 1)
 	{
 		free(str);
 		str = get_next_line(fd);
