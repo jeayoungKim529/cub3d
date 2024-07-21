@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:16:31 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 17:44:49 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/22 03:26:50 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 //ft_atoi_cub.c
 size_t		ft_strlen_cub(const char *s);
-long long	ft_atoi_cub(const char *str);
+long long	ft_atoi_cub(const char *str, int cnt);
 //check_only_six.c
 int			ft_max(int a, int b);
 int			check_only_six_util(char *s);
