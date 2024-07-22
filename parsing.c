@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 14:55:55 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 17:35:37 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/22 03:25:02 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ void	check_cub_file(int argc, char *argv[], t_info *info)
 	char	**s;
 
 	if (argc != 2)
-		parsing_error(strerror(errno), 0);
+		parsing_error();
 	s = ft_split(argv[1], '.');
 	num = 0;
 	while (s[num])
 		num++;
 	if (ft_strncmp(s[num - 1], "cub", 4) != 0)
-		parsing_error(strerror(errno), 0);
+		parsing_error();
 	info->file = ft_strdup(argv[1]);
 	if (!info->file)
-		parsing_error(strerror(errno), 0);
+		parsing_error();
 }
 
 void	init_info(t_info *info)
