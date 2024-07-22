@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:31:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/22 03:23:26 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/22 03:25:40 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	init_map_size(t_info *info, int fd, char *str)
 		{
 			len = check_only_six_util(str);
 			if (len < 0)
-				parsing_error(strerror(errno), 2);
+				parsing_error();
 			max_width = ft_max(max_width, len);
 			row++;
 		}
@@ -100,13 +100,13 @@ void	init_map(t_info *info, int row)
 
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
-		parsing_error(strerror(errno), 2);
+		parsing_error();
 	str = return_str(row, fd);
 	init_map_size(info, fd, str);
 	close(fd);
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
-		parsing_error(strerror(errno), 2);
+		parsing_error();
 	str = return_str(row, fd);
 	init_map_oz(info, fd, str);
 	close(fd);

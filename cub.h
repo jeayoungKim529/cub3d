@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 15:55:13 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/22 03:24:34 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_info
 }	t_info;
 
 //cub.c
-void	parsing_error(char *error_msg, int flag);
+void	parsing_error();
 //parsing.c
 void	parsing(int argc, char *argv[], t_info *info);
 
