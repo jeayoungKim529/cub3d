@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:09:23 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/19 17:22:31 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/22 11:21:25 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	data_init(t_data *data, t_info *info)
     data->move_right = 0;
     data->rotate_left = 0;
     data->rotate_right = 0;
-	data->mapHeight = info->map_h;
-	data->mapWidth = info->map_w;
+	data->map_height = info->map_h;
+	data->map_width = info->map_w;
 	data->floor[0] = info->f[0];
 	data->floor[1] = info->f[1];
 	data->floor[2] = info->f[2];

@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/19 17:48:12 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/22 11:27:59 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void move_player(t_data *data)
 		double move_x = -data->dirY * moveSpeed;
 		double move_y = data->dirX * moveSpeed;
 
-		if(!cub_atoi(data->worldMap[(int)(data->posX + move_x)][(int)(data->posY)]))
+		if(!cub_atoi(data->world_map[(int)(data->pos_x + move_x)][(int)(data->pos_y)]))
 			data->posX += move_x;
 		if(!cub_atoi(data->worldMap[(int)(data->posX)][(int)(data->posY + move_y)]))
 			data->posY += move_y;
@@ -258,7 +258,7 @@ int	map(t_info	info)
 	t_data data;
 
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Raycaster");
+	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
 	data.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, &data.line_length, &data.endian);
 	set_direction(&data, &info);

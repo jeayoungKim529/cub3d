@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 16:53:30 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/19 17:12:51 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/22 11:20:47 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	set_direction(t_data *data, t_info *info)
 {
-	data->worldMap = info->map;
-    data->posX = info->user_x; // 위치
-    data->posY = info->user_y; // 위치
+	data->world_map = info->map;
+    data->pos_x = info->user_x; // 위치
+    data->pos_y = info->user_y; // 위치
 	if (info->direction == 'N')
 		set_direction_n(data, info);
 	else if (info->direction == 'S')
@@ -29,31 +29,31 @@ void	set_direction(t_data *data, t_info *info)
 }
 void	set_direction_n(t_data *data, t_info *info)
 {
-	data->dirX = -1;
-	data->dirY = 0;
-	data->planeX = 0;
-	data->planeY = 0.66;
+	data->dir_x = -1;
+	data->dir_y = 0;
+	data->plane_x = 0;
+	data->plane_y = 0.66;
 }
 void	set_direction_s(t_data *data, t_info *info)
 {
-	data->dirX = 1;
-	data->dirY = 0;
-	data->planeX = 0;
-	data->planeY = -0.66;
+	data->dir_x = 1;
+	data->dir_y = 0;
+	data->plane_x = 0;
+	data->plane_y = -0.66;
 }
 void	set_direction_w(t_data *data, t_info *info)
 {
-	data->dirX = 0;
-	data->dirY = 1;
-	data->planeX = 0.66;
-	data->planeY = 0;
+	data->dir_x = 0;
+	data->dir_y = 1;
+	data->plane_x = 0.66;
+	data->plane_y = 0;
 }
 void	set_direction_e(t_data *data, t_info *info)
 {
-	data->dirX = 0;
-	data->dirY = -1;
-	data->planeX = -0.66;
-	data->planeY = 0;
+	data->dir_x = 0;
+	data->dir_y = -1;
+	data->plane_x = -0.66;
+	data->plane_y = 0;
 }
 
 
