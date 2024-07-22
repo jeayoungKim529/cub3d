@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:16:31 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/22 11:31:30 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/22 11:33:40 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void		init_map(t_info *info, int row);
 //parsing_check_map.c
 void		check_map(t_info *info);
 //parsing_init_user.c
-void 		init_user(t_info *info);
+void		init_user(t_info *info);
 
 #endif
