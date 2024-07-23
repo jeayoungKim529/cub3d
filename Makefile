@@ -6,7 +6,7 @@
 #    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/19 17:49:50 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/23 21:39:56 by jimchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,8 @@ SRCS = cub.c\
 		exec_direction.c\
 		exec_key_handling.c \
 		exec_image.c \
-		# exec_move.c \
-		# exec_utils.c \
+		exec_move.c \
+		exec_raycasting.c \
 
 
 OBJS = $(SRCS:.c=.o)

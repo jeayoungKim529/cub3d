@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/22 11:25:37 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/23 20:30:16 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ typedef struct {
 #include "cub.h"
 #include "parsing.h"
 
-
+long long	cub_atoi(char str);
 //exec_direction
 void	set_direction(t_data *data, t_info *info);
 void	set_direction_n(t_data *data, t_info *info);
