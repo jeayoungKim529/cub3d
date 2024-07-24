@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/24 19:27:55 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:07:50 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@
 # define MOVE_BACKWARD 1
 # define MOVE_LEFT 0
 # define MOVE_RIGHT 2
-# define SCREEN_WIDTH 640
-# define SCREEN_HEIGHT 480
-# define MOVE_SPEED 0.05
-# define ROTATE 0.025
-// # define SCREEN_WIDTH 1280
-// # define SCREEN_HEIGHT 960
-// # define MOVE_SPEED 0.1
-// # define ROTATE 0.05
+// # define SCREEN_WIDTH 640
+// # define SCREEN_HEIGHT 480
+// # define MOVE_SPEED 0.05
+// # define ROTATE 0.025
+# define SCREEN_WIDTH 1280
+# define SCREEN_HEIGHT 960
+# define MOVE_SPEED 0.1
+# define ROTATE 0.05
 
 typedef struct s_img
 {

@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:27:13 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/24 19:18:40 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:00:58 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ void	clear_screen(t_data *data)
 	while (++x < SCREEN_WIDTH)
 	{
 		y = -1;
-		while (++y < SCREEN_HEIGHT)
+		while (++y < SCREEN_HEIGHT / 2)
 			my_mlx_pixel_put(data, x, y, color);
 	}
 	x = -1;
 	color = create_rgb(data->floor[0], data->floor[1], data->floor[2]);
 	while (++x < SCREEN_WIDTH)
 	{
-		y = (SCREEN_WIDTH / 2) - 1;
+		y = (SCREEN_HEIGHT / 2) - 1;
 		while (++y < SCREEN_HEIGHT)
 			my_mlx_pixel_put(data, x, y, color);
 	}

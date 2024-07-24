@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 14:55:55 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/24 19:18:50 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/24 19:43:34 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ void	parsing(int argc, char *argv[], t_info *info)
 	row = init_type(info);
 	init_map(info, row);
 	check_map(info);
+	check_texture(info);
 	init_user(info);
 }

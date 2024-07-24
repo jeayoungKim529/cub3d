@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:16:31 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/19 15:13:11 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/24 19:44:29 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ long long	ft_atoi_cub(const char *str, int cnt);
 //check_only_six.c
 int			ft_max(int a, int b);
 int			check_only_six_util(char *s);
-void		check_only_six(char *argv[]);
+// void		check_only_six(char *argv[]);
 //parsing_init_type.c
 void		check_cub_file(int argc, char *argv[], t_info *info);
 int			init_six(t_info *info, char *str, int i);
@@ -32,6 +32,7 @@ int			init_type(t_info *info);
 void		init_map(t_info *info, int row);
 //parsing_check_map.c
 void		check_map(t_info *info);
+void		check_texture(t_info *info);
 //parsing_init_user.c
 void 		init_user(t_info *info);
 char	*ft_strdup_cub(char *src);

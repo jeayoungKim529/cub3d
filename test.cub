@@ -1,7 +1,7 @@
-NO ../mlx_example/textures/wall_n.xpm
-SO ../mlx_example/textures/wall_s.xpm
-WE ../mlx_example/textures/wall_w.xpm
-EA ../mlx_example/textures/wall_e.xpm
+NO textures/wall_n.xpm
+SO textures/wall_s.xpm
+WE textures/wall_w.xpm
+EA textures/wall_e.xpm
 
 F 220,100,0
 C 220,150,0
