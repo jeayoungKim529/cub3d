@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/24 20:34:29 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/24 21:05:45 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <math.h>
 # include <stdlib.h>
-# include "./minilibx_mms_20210621/mlx.h"
+# include "../minilibx_mms_20210621/mlx.h"
 # include "cub.h"
 # include "parsing.h"
 
