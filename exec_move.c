@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:27:06 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/24 19:07:02 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:26:27 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	move_vertical(t_data *data)
 			data->pos_x += dx;
 		if (!cub_atoi(data->map[(int)data->pos_x][(int)(data->pos_y + dy)]))
 			data->pos_y += dy;
+		data->move_forward = 0;
 	}
 	if (data->move_backward)
 	{
@@ -32,6 +33,7 @@ void	move_vertical(t_data *data)
 			data->pos_x -= dx;
 		if (!cub_atoi(data->map[(int)data->pos_x][(int)(data->pos_y - dy)]))
 			data->pos_y -= dy;
+		data->move_backward = 0;
 	}
 }
 
@@ -48,6 +50,7 @@ void	move_horizontal(t_data *data)
 			data->pos_x += move_x;
 		if (!cub_atoi(data->map[(int)data->pos_x][(int)(data->pos_y + move_y)]))
 			data->pos_y += move_y;
+		data->move_left = 0;
 	}
 	if (data->move_right)
 	{
@@ -57,6 +60,7 @@ void	move_horizontal(t_data *data)
 			data->pos_x += move_x;
 		if (!cub_atoi(data->map[(int)data->pos_x][(int)(data->pos_y + move_y)]))
 			data->pos_y += move_y;
+		data->move_right = 0;
 	}
 }
 
@@ -75,6 +79,7 @@ void	rotate(t_data *data)
 		data->plane_y * sin(-ROTATE);
 		data->plane_y = old_plane_x * sin(-ROTATE) + \
 		data->plane_y * cos(-ROTATE);
+		data->rotate_right = 0;
 	}
 	if (data->rotate_left)
 	{
@@ -83,6 +88,7 @@ void	rotate(t_data *data)
 		data->plane_x = data->plane_x * cos(ROTATE) - \
 		data->plane_y * sin(ROTATE);
 		data->plane_y = old_plane_x * sin(ROTATE) + data->plane_y * cos(ROTATE);
+		data->rotate_left = 0;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 17:14:32 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/24 20:07:22 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:33:49 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	main_loop(t_data *data)
 
 	x = -1;
 	y = 0;
-	clear_screen(data);
 	while (++x < SCREEN_WIDTH)
 	{
 		d.map_x = (int)data->pos_x;

@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/24 19:20:30 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/24 20:36:44 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	map(t_info	info)
 	set_direction(&data, &info);
 	data_init(&data, &info);
 	textures_init(&data, &info);
+	clear_screen(&data);
 	mlx_loop_hook(data.mlx, main_loop, &data);
 	mlx_hook(data.win, 2, 1L << 0, key_press, &data);
-	mlx_hook(data.win, 3, 1L << 1, key_release, &data);
 	mlx_hook(data.win, 17, 0, &handle_exit, 0);
 	mlx_loop(data.mlx);
 	return (0);
