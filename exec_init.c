@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 17:09:23 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/22 11:21:25 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/24 18:46:32 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	data_init(t_data *data, t_info *info)
 {
 	data->move_forward = 0;
-    data->move_backward = 0;
-    data->move_left = 0;
-    data->move_right = 0;
-    data->rotate_left = 0;
-    data->rotate_right = 0;
+	data->move_backward = 0;
+	data->move_left = 0;
+	data->move_right = 0;
+	data->rotate_left = 0;
+	data->rotate_right = 0;
 	data->map_height = info->map_h;
 	data->map_width = info->map_w;
 	data->floor[0] = info->f[0];
@@ -29,7 +29,8 @@ void	data_init(t_data *data, t_info *info)
 	data->ceiling[1] = info->c[1];
 	data->ceiling[2] = info->c[2];
 }
-void textures_init(t_data *data, t_info *info)
+
+void	textures_init(t_data *data, t_info *info)
 {
 	data->texture[0].ptr = mlx_xpm_file_to_image(data->mlx, info->so, \
 	&data->texture[0].width, &(data->texture[0].height));

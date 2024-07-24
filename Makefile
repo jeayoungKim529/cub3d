@@ -6,13 +6,12 @@
 #    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/23 21:39:56 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/24 19:23:05 by jimchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS =
-#  -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 NAME = cub3D
 LIBFT_DIR = ./libft_src/
@@ -41,7 +40,8 @@ SRCS = cub.c\
 		exec_key_handling.c \
 		exec_image.c \
 		exec_move.c \
-		exec_raycasting.c \
+		exec_raycast.c \
+		exec_dda.c
 
 
 OBJS = $(SRCS:.c=.o)
