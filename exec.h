@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/25 10:21:20 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/25 17:46:27 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 # define MOVE_BACKWARD 1
 # define MOVE_LEFT 0
 # define MOVE_RIGHT 2
-// # define SCREEN_WIDTH 640
-// # define SCREEN_HEIGHT 480
+# define SCREEN_WIDTH 640
+# define SCREEN_HEIGHT 480
 // # define MOVE_SPEED 0.05
 // # define ROTATE 0.025
-# define SCREEN_WIDTH 1280
-# define SCREEN_HEIGHT 960
+// # define SCREEN_WIDTH 840
+// # define SCREEN_HEIGHT 680
 # define MOVE_SPEED 0.1
 # define ROTATE 0.05
 
@@ -113,7 +113,6 @@ void		textures_init(t_data *data, t_info *info);
 //exec_key_handling
 int			handle_exit(int num);
 int			key_press(int keycode, t_data *data);
-int			key_release(int keycode, t_data *data);
 //exec_move
 void		move(t_data *data);
 void		move_vertical(t_data *data);

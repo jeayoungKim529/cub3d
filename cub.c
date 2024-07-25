@@ -6,14 +6,14 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:21:05 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/25 10:22:41 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/25 17:37:37 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 #include "parsing.h"
 
-void	parsing_error()
+void	parsing_error(void)
 {
 	printf("Error\n");
 	exit(1);

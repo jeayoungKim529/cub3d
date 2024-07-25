@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:27:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/24 20:33:54 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/25 17:37:17 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,5 @@ int	key_press(int keycode, t_data *data)
 		exit(0);
 	move(data);
 	clear_screen(data);
-	return (0);
-}
-
-int	key_release(int keycode, t_data *data)
-{
-	if (keycode == MOVE_FORWARD)
-		data->move_forward = 0;
-	if (keycode == MOVE_BACKWARD)
-		data->move_backward = 0;
-	if (keycode == MOVE_LEFT)
-		data->move_left = 0;
-	if (keycode == MOVE_RIGHT)
-		data->move_right = 0;
-	if (keycode == TURN_LEFT)
-		data->rotate_left = 0;
-	if (keycode == TURN_RIGHT)
-		data->rotate_right = 0;
 	return (0);
 }
