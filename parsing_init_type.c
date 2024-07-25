@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/19 15:05:51 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/22 03:26:16 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	init_color(t_info *info, char **tmp, int flag)
 	while (tmp[i])
 		i++;
 	if (i != 3)
-		parsing_error("color num erorr", 2);
+		parsing_error();
 	i = -1;
 	while (++i < 3)
 	{
 		if (ft_strlen_cub(tmp[i]) <= 0)
-			parsing_error("color num error", 3);
+			parsing_error();
 		if (i == 0 && flag == 0)
 			info->f[i] = ft_atoi_cub (tmp[i] + 1, 0);
 		else if (flag == 0)
@@ -101,7 +101,7 @@ int	init_type(t_info *info)
 
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
-		parsing_error(strerror(errno), 1);
+		parsing_error();
 	num = 0;
 	row = 0;
 	str = get_next_line(fd);
@@ -116,7 +116,7 @@ int	init_type(t_info *info)
 		str = get_next_line(fd);
 	}
 	if (num != 6)
-		parsing_error(strerror(errno), 1);
+		parsing_error();
 	close(fd);
 	return (row + 1);
 }

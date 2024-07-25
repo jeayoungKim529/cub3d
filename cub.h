@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/25 10:21:31 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/25 10:22:46 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_info
 }	t_info;
 
 //cub.c
-void	parsing_error(char *error_msg, int flag);
+void	parsing_error();
 //parsing.c
 void	parsing(int argc, char *argv[], t_info *info);
 
