@@ -6,13 +6,12 @@
 #    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/10 19:10:30 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/25 10:21:16 by jimchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
-CFLAGS =
-#  -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 NAME = cub3D
 LIBFT_DIR = ./libft_src/
@@ -25,7 +24,7 @@ ifdef DEBUG
 	CFLAGS += -g3 -fsanitize=address
 endif
 
-SRCS = cub.c\
+SRCS =	cub.c\
 		parsing.c\
 		ft_cub.c\
 		parsing_check_util.c\
@@ -33,7 +32,17 @@ SRCS = cub.c\
 		parsing_init_map.c\
 		parsing_check_map.c\
 		parsing_init_user.c\
-		exec.c
+		\
+		\
+		exec.c \
+		exec_init.c \
+		exec_direction.c\
+		exec_key_handling.c \
+		exec_image.c \
+		exec_move.c \
+		exec_raycast.c \
+		exec_dda.c
+
 
 OBJS = $(SRCS:.c=.o)
 
@@ -53,9 +62,10 @@ $(NAME): $(OBJS)
 clean:
 	@rm -rf $(OBJS)
 	@make -C $(LIBFT_DIR) clean
+	@make -C $(MLXDIR) clean
 
 fclean: clean
-	@rm -f last_bonus
+	@rm -f libmlx.dylib
 	@rm -f $(NAME)
 	@make -C $(LIBFT_DIR) fclean
 

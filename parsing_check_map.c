@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:41:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/12 16:02:19 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/24 19:43:15 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,30 @@ void	check_map(t_info *info)
 		}
 		i++;
 	}
+}
+
+void	check_texture(t_info *info)
+{
+	int	fd;
+
+	fd = open(info->no, O_RDONLY);
+	if (fd < 0)
+		parsing_error("texture error", 1);
+	else
+		close(fd);
+	fd = open(info->so, O_RDONLY);
+	if (fd < 0)
+		parsing_error("texture error", 1);
+	else
+		close(fd);
+	fd = open(info->we, O_RDONLY);
+	if (fd < 0)
+		parsing_error("texture error", 1);
+	else
+		close(fd);
+	fd = open(info->ea, O_RDONLY);
+	if (fd < 0)
+		parsing_error("texture error", 1);
+	else
+		close(fd);
 }

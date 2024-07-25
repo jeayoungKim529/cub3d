@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 14:55:55 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/22 03:25:02 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/25 10:22:50 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,6 @@ void	parsing(int argc, char *argv[], t_info *info)
 	row = init_type(info);
 	init_map(info, row);
 	check_map(info);
+	check_texture(info);
 	init_user(info);
-	// printf_info(info);
 }
