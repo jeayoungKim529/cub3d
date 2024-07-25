@@ -6,7 +6,7 @@
 #    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/24 21:05:24 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/25 10:21:16 by jimchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,24 +24,24 @@ ifdef DEBUG
 	CFLAGS += -g3 -fsanitize=address
 endif
 
-SRCS =	src/cub.c\
-		src/parsing.c\
-		src/ft_cub.c\
-		src/parsing_check_util.c\
-		src/parsing_init_type.c\
-		src/parsing_init_map.c\
-		src/parsing_check_map.c\
-		src/parsing_init_user.c\
+SRCS =	cub.c\
+		parsing.c\
+		ft_cub.c\
+		parsing_check_util.c\
+		parsing_init_type.c\
+		parsing_init_map.c\
+		parsing_check_map.c\
+		parsing_init_user.c\
 		\
 		\
-		src/exec.c \
-		src/exec_init.c \
-		src/exec_direction.c\
-		src/exec_key_handling.c \
-		src/exec_image.c \
-		src/exec_move.c \
-		src/exec_raycast.c \
-		src/exec_dda.c
+		exec.c \
+		exec_init.c \
+		exec_direction.c\
+		exec_key_handling.c \
+		exec_image.c \
+		exec_move.c \
+		exec_raycast.c \
+		exec_dda.c
 
 
 OBJS = $(SRCS:.c=.o)
