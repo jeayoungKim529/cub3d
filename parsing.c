@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 14:55:55 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/25 10:22:50 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 13:31:14 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,16 @@ void	check_cub_file(int argc, char *argv[], t_info *info)
 	char	**s;
 
 	if (argc != 2)
-		parsing_error();
+		parsing_error(2);
 	s = ft_split(argv[1], '.');
 	num = 0;
 	while (s[num])
 		num++;
 	if (ft_strncmp(s[num - 1], "cub", 4) != 0)
-		parsing_error();
+		parsing_error(2);
 	info->file = ft_strdup(argv[1]);
 	if (!info->file)
-		parsing_error();
+		parsing_error(2);
 }
 
 void	init_info(t_info *info)

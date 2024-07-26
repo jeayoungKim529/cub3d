@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:21:05 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/25 17:37:37 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 13:18:56 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 #include "parsing.h"
 
-void	parsing_error(void)
+void	parsing_error(int num)
 {
-	printf("Error\n");
+	printf("Error : %d\n", num);
 	exit(1);
 }
 

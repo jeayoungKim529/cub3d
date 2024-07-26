@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:35:25 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/12 15:50:57 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:03:13 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_only_one_user(t_info *info)
 				info->map[i][j] == 'E' || info->map[i][j] == 'W')
 			{
 				if (flag == TRUE)
-					parsing_error("only one user error", 5);
+					parsing_error(5);
 				else
 				{
 					info->direction = info->map[i][j];
