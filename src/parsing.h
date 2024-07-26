@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:16:31 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 14:17:11 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 16:41:31 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void		init_map(t_info *info, int row);
 //parsing_check_map.c
 void		check_map(t_info *info);
 void		check_texture(t_info *info);
+int			is_direction(char c);
 //parsing_init_user.c
 void		init_user(t_info *info);
 //parsing_check_util.c

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/26 14:17:05 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 16:44:42 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 # define MOVE_BACKWARD 1
 # define MOVE_LEFT 0
 # define MOVE_RIGHT 2
-// # define SCREEN_WIDTH 640
-// # define SCREEN_HEIGHT 480
+# define SCREEN_WIDTH 640
+# define SCREEN_HEIGHT 480
 // # define MOVE_SPEED 0.05
 // # define ROTATE 0.025
-# define SCREEN_WIDTH 1280
-# define SCREEN_HEIGHT 960
+// # define SCREEN_WIDTH 1280
+// # define SCREEN_HEIGHT 960
 # define MOVE_SPEED 0.1
 # define ROTATE 0.05
 

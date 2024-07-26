@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:41:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 14:19:00 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 16:41:51 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ int	check_four_wall(t_info *info, int x, int y)
 				cur_y >= info->map_w)
 			return (1);
 		if (info->map[cur_x][cur_y] != '0' && info->map[cur_x][cur_y] != '1' && \
-		is_direction(info->map[cur_x][cur_y]) != 1 && \
-		is_whitespace(info->map[cur_x][cur_y]) != 1)
+		is_direction(info->map[cur_x][cur_y]) != 1)
 			return (1);
 		i++;
 	}
@@ -69,7 +68,7 @@ void	check_map(t_info *info)
 		j = 0;
 		while (j < info->map_w)
 		{
-			if (info->map[i][j] == '0')
+			if (info->map[i][j] == '0' || is_direction(info->map[i][j]))
 			{
 				if (check_four_wall(info, i, j) != 0)
 					parsing_error(15);
