@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/26 12:53:30 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 13:08:26 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ typedef struct s_img
 	int		*data;
 	int		width;
 	int		height;
-	int		size_l;
-	int		bpp;
-	int		endian;
+	int		b;
+	int		l;
+	int		e;
 }				t_img;
 
 typedef struct s_data
@@ -51,9 +51,9 @@ typedef struct s_data
 	void			*win;
 	void			*img;
 	char			*addr;
-	int				bits_per_pixel;
-	int				line_length;
-	int				endian;
+	int				b; // bits_per_pixel
+	int				l; //line_length
+	int				e; //endian
 	double			pos_x;
 	double			pos_y;
 	double			dir_x;

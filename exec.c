@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:52:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/24 20:36:44 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 13:08:16 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int	map(t_info	info)
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "cub3D");
 	data.img = mlx_new_image(data.mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	data.addr = mlx_get_data_addr(data.img, &data.bits_per_pixel, \
-	&data.line_length, &data.endian);
+	data.addr = mlx_get_data_addr(data.img, &data.b, &data.l, &data.e);
 	set_direction(&data, &info);
 	data_init(&data, &info);
 	textures_init(&data, &info);
