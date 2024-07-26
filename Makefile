@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
+#    By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/26 14:17:46 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/26 14:37:25 by jeakim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRCS =	src/cub.c\
 		src/exec_image.c \
 		src/exec_move.c \
 		src/exec_raycast.c \
-		src/exec_dda.c
+		src/exec_dda.c \
+		src/ft_free.c
 
 
 OBJS = $(SRCS:.c=.o)
