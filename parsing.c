@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 14:55:55 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 13:19:57 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:31:14 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,4 @@ void	parsing(int argc, char *argv[], t_info *info)
 	check_map(info);
 	check_texture(info);
 	init_user(info);
-	// printf_info(info);
 }

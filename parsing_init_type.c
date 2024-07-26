@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 13:02:31 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:29:05 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	init_type(t_info *info)
 	str = get_next_line(fd);
 	while (str && num < 6)
 	{
-		if (ft_strlen(str) > 0)
+		if (ft_strlen_cub(str) > 0)
 		{
 			num += init_six(info, str, 0);
 		}
@@ -117,6 +117,11 @@ int	init_type(t_info *info)
 	}
 	if (num != 6)
 		parsing_error(2);
+	while (str)
+	{
+		free(str);
+		str = get_next_line(fd);
+	}
 	close(fd);
-	return (row + 1);
+	return (row);
 }
