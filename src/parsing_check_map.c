@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:41:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 13:30:30 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:19:00 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	check_four_wall(t_info *info, int x, int y)
 		if (cur_x < 0 || cur_x >= info->map_h || cur_y < 0 || \
 				cur_y >= info->map_w)
 			return (1);
-		if (info->map[cur_x][cur_y] != '0' && info->map[cur_x][cur_y] != '1'\
-				&& is_direction(info->map[cur_x][cur_y]) != 1\
-				&& is_whitespace(info->map[cur_x][cur_y]) != 1)
+		if (info->map[cur_x][cur_y] != '0' && info->map[cur_x][cur_y] != '1' && \
+		is_direction(info->map[cur_x][cur_y]) != 1 && \
+		is_whitespace(info->map[cur_x][cur_y]) != 1)
 			return (1);
 		i++;
 	}
@@ -86,22 +86,22 @@ void	check_texture(t_info *info)
 
 	fd = open(info->no, O_RDONLY);
 	if (fd < 0)
-		parsing_error(1);
+		parsing_error(11);
 	else
 		close(fd);
 	fd = open(info->so, O_RDONLY);
 	if (fd < 0)
-		parsing_error(1);
+		parsing_error(11);
 	else
 		close(fd);
 	fd = open(info->we, O_RDONLY);
 	if (fd < 0)
-		parsing_error(1);
+		parsing_error(11);
 	else
 		close(fd);
 	fd = open(info->ea, O_RDONLY);
 	if (fd < 0)
-		parsing_error(1);
+		parsing_error(11);
 	else
 		close(fd);
 }

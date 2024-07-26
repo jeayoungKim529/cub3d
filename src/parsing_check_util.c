@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check_util.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 11:43:09 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/10 19:30:35 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:15:04 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,3 @@ int	check_only_six_util(char *s)
 	}
 	return (len);
 }
-
-// void	check_only_six(char *argv[])
-// {
-// 	char	*str;
-// 	int		fd;
-
-// 	fd = open(argv[1], O_RDONLY);
-// 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
-// 		parsing_error(1);
-// 	str = get_next_line(fd);
-// 	while (str)
-// 	{
-// 		if (check_only_six_util(str) == 0)
-// 		{
-// 			free(str);
-// 			parsing_error(1);
-// 		}
-// 		free(str);
-// 		str = get_next_line(fd);
-// 	}
-// 	close(fd);
-// }

@@ -6,7 +6,7 @@
 #    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/25 17:52:31 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/26 14:17:46 by jimchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,24 +24,22 @@ ifdef DEBUG
 	CFLAGS += -g3 -fsanitize=address
 endif
 
-SRCS =	cub.c\
-		parsing.c\
-		ft_cub.c\
-		parsing_check_util.c\
-		parsing_init_type.c\
-		parsing_init_map.c\
-		parsing_check_map.c\
-		parsing_init_user.c\
-		\
-		\
-		exec.c \
-		exec_init.c \
-		exec_direction.c\
-		exec_key_handling.c \
-		exec_image.c \
-		exec_move.c \
-		exec_raycast.c \
-		exec_dda.c
+SRCS =	src/cub.c\
+		src/parsing.c\
+		src/ft_cub.c\
+		src/parsing_check_util.c\
+		src/parsing_init_type.c\
+		src/parsing_init_map.c\
+		src/parsing_check_map.c\
+		src/parsing_init_user.c\
+		src/exec.c \
+		src/exec_init.c \
+		src/exec_direction.c\
+		src/exec_key_handling.c \
+		src/exec_image.c \
+		src/exec_move.c \
+		src/exec_raycast.c \
+		src/exec_dda.c
 
 
 OBJS = $(SRCS:.c=.o)
@@ -52,7 +50,7 @@ all: $(NAME)
 	@$(CC) $(CFLAGS) -c $< -o $@ -I./libft_src
 
 $(NAME): $(OBJS)
-	@make bonus -C $(LIBFT_DIR)
+	@make -C $(LIBFT_DIR)
 	make -s -C $(MLXDIR)
 	cp ./$(MLXDIR)/libmlx.dylib ./libmlx.dylib
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAG) -o $(NAME)

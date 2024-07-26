@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init_map.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:31:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 13:17:11 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:09:15 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	init_map_oz(t_info *info, int fd, char *str)
 		free(str);
 		str = get_next_line(fd);
 	}
-	i = 0;
-	while (i < info->map_h)
+	i = -1;
+	while (++i < info->map_h)
 	{
 		j = 0;
 		while (str[j] && str[j] != '\n' && j < info->map_w)
@@ -77,7 +77,6 @@ void	init_map_oz(t_info *info, int fd, char *str)
 		}
 		free(str);
 		str = get_next_line(fd);
-		i++;
 	}
 }
 

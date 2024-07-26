@@ -1,9 +1,9 @@
 C 5,50,120
-NO textures/n1.xpm
+NO ./textures/n1.xpm
 F 10,10,30
-SO textures/s1.xpm
-WE textures/w1.xpm
-EA textures/e1.xpm
+SO ./textures/s1.xpm
+WE ./textures/w1.xpm
+EA ./textures/e1.xpm
         1111111111111111111111111
         1000000000110000000000001
         1011000001110000001000001

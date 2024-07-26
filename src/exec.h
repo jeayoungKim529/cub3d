@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/26 13:08:26 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 14:17:05 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <math.h>
 # include <stdlib.h>
-# include "./minilibx_mms_20210621/mlx.h"
+# include "../minilibx_mms_20210621/mlx.h"
 # include "cub.h"
 # include "parsing.h"
 
@@ -51,9 +51,9 @@ typedef struct s_data
 	void			*win;
 	void			*img;
 	char			*addr;
-	int				b; // bits_per_pixel
-	int				l; //line_length
-	int				e; //endian
+	int				b;
+	int				l;
+	int				e;
 	double			pos_x;
 	double			pos_y;
 	double			dir_x;

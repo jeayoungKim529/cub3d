@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init_type.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 13:29:05 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:10:29 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,13 @@ int	init_six(t_info *info, char *str, int i)
 	return (1);
 }
 
-int	init_type(t_info *info)
+int	init_type(t_info *info, int fd, int num, int row)
 {
 	char	*str;
-	int		fd;
-	int		num;
-	int		row;
 
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
 		parsing_error(2);
-	num = 0;
-	row = 0;
 	str = get_next_line(fd);
 	while (str && num < 6)
 	{

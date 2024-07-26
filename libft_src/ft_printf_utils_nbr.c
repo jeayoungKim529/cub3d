@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils_nbr.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 15:56:55 by jeakim            #+#    #+#             */
-/*   Updated: 2024/06/15 15:30:42 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:14:14 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// int	ft_putnbr_fd(long n, int fd)
-// {
-// 	int	num1;
-// 	int	num2;
-
-// 	if (n == -2147483648)
-// 		return (ft_putstr_fd("-2147483648", fd));
-// 	else if (n < 0)
-// 	{
-// 		num1 = ft_putchar_fd('-', fd);
-// 		if (num1 == -1)
-// 			return (-1);
-// 		n *= -1;
-// 		num2 = ft_putnbr_fd(n, fd);
-// 	}
-// 	else if (n > 9)
-// 	{
-// 		num1 = ft_putnbr_fd(n / 10, fd);
-// 		if (num1 == -1)
-// 			return (-1);
-// 		num2 = ft_putnbr_fd(n % 10, fd);
-// 	}
-// 	else
-// 		return (ft_putchar_fd(n + '0', fd));
-// 	if (num2 == -1)
-// 		return (-1);
-// 	return (num1 + num2);
-// }
 
 int	ft_putnbr_fd_u(unsigned int n, int fd)
 {

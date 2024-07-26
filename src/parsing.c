@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 14:55:55 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 13:31:14 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:10:59 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	parsing(int argc, char *argv[], t_info *info)
 
 	init_info(info);
 	check_cub_file(argc, argv, info);
-	row = init_type(info);
+	row = init_type(info, 0, 0, 0);
 	init_map(info, row);
 	check_map(info);
 	check_texture(info);
