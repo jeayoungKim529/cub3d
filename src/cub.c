@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
+/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:21:05 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 13:18:56 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 14:26:40 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	main(int argc, char *argv[])
 {
 	t_info	info;
 
-	check_leak();
 	parsing(argc, argv, &info);
 	map(info);
 	exit(0);
