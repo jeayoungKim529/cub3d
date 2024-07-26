@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 13:09:09 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/22 03:25:19 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:02:04 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_isdigit_cub(char c)
 	else if (c == '\n' || c == '\t' || c == '\v'
 		|| c == '\f' || c == '\r' || c == ' ')
 		return (0);
-	parsing_error();
+	parsing_error(1);
 	return (0);
 }
 
@@ -49,7 +49,7 @@ long long	ft_atoi_cub(const char *str, int cnt)
 	if (cnt > 1)
 		num = 0;
 	if (num * neg < 0 || num * neg > 255)
-		parsing_error();
+		parsing_error(1);
 	return (num * neg);
 }
 

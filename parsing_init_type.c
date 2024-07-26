@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/22 03:26:16 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:02:31 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	init_color(t_info *info, char **tmp, int flag)
 	while (tmp[i])
 		i++;
 	if (i != 3)
-		parsing_error();
+		parsing_error(2);
 	i = -1;
 	while (++i < 3)
 	{
 		if (ft_strlen_cub(tmp[i]) <= 0)
-			parsing_error();
+			parsing_error(2);
 		if (i == 0 && flag == 0)
 			info->f[i] = ft_atoi_cub (tmp[i] + 1, 0);
 		else if (flag == 0)
@@ -51,7 +51,7 @@ void	init_texture(t_info *info, char *str)
 	while (tmp[i])
 		i++;
 	if (i != 2)
-		parsing_error("texture file pass erorr", 2);
+		parsing_error(2);
 	if (ft_strncmp(tmp[0], "NO", 3) == 0)
 		info->no = ft_strdup_cub(tmp[1]);
 	else if (ft_strncmp(tmp[0], "SO", 3) == 0)
@@ -101,7 +101,7 @@ int	init_type(t_info *info)
 
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
-		parsing_error();
+		parsing_error(2);
 	num = 0;
 	row = 0;
 	str = get_next_line(fd);
@@ -116,7 +116,7 @@ int	init_type(t_info *info)
 		str = get_next_line(fd);
 	}
 	if (num != 6)
-		parsing_error();
+		parsing_error(2);
 	close(fd);
 	return (row + 1);
 }

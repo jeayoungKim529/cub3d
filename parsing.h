@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 15:16:31 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/25 10:24:25 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 13:05:46 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ void		check_map(t_info *info);
 void		check_texture(t_info *info);
 //parsing_init_user.c
 void		init_user(t_info *info);
+//parsing_check_util.c
+int			is_whitespace(char c);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 18:31:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/22 03:25:40 by jeakim           ###   ########.fr       */
+/*   Updated: 2024/07/26 13:17:11 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	init_map_size(t_info *info, int fd, char *str)
 	row = 0;
 	while (str)
 	{
-		if (ft_strlen(str) > 0)
+		if (ft_strlen_cub(str) > 0)
 		{
 			len = check_only_six_util(str);
 			if (len < 0)
-				parsing_error();
+				parsing_error(2);
 			max_width = ft_max(max_width, len);
 			row++;
 		}
@@ -56,7 +56,11 @@ void	init_map_oz(t_info *info, int fd, char *str)
 	size_t	i;
 	size_t	j;
 
-	init_map_malloc(info);
+	while (ft_strlen_cub(str) == 0)
+	{
+		free(str);
+		str = get_next_line(fd);
+	}
 	i = 0;
 	while (i < info->map_h)
 	{
@@ -84,7 +88,7 @@ char	*return_str(int row, int fd)
 
 	i = 0;
 	str = get_next_line(fd);
-	while (str && i < row - 1)
+	while (str && i < row)
 	{
 		free(str);
 		str = get_next_line(fd);
@@ -100,13 +104,14 @@ void	init_map(t_info *info, int row)
 
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
-		parsing_error();
+		parsing_error(3);
 	str = return_str(row, fd);
 	init_map_size(info, fd, str);
 	close(fd);
+	init_map_malloc(info);
 	fd = open(info->file, O_RDONLY);
 	if (fd < 0 || fd == 2 || read(fd, 0, 0) == -1)
-		parsing_error();
+		parsing_error(3);
 	str = return_str(row, fd);
 	init_map_oz(info, fd, str);
 	close(fd);

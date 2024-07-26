@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_check_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 14:41:50 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/24 19:43:15 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 13:06:07 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int	check_four_wall(t_info *info, int x, int y)
 				cur_y >= info->map_w)
 			return (1);
 		if (info->map[cur_x][cur_y] != '0' && info->map[cur_x][cur_y] != '1'\
-				&& is_direction(info->map[cur_x][cur_y]) != 1)
+				&& is_direction(info->map[cur_x][cur_y]) != 1\
+				&& is_whitespace(info->map[cur_x][cur_y]) != 1)
 			return (1);
 		i++;
 	}
@@ -71,7 +72,7 @@ void	check_map(t_info *info)
 			if (info->map[i][j] == '0')
 			{
 				if (check_four_wall(info, i, j) != 0)
-					parsing_error("wall error", 1);
+					parsing_error(15);
 			}
 			j++;
 		}
@@ -85,22 +86,22 @@ void	check_texture(t_info *info)
 
 	fd = open(info->no, O_RDONLY);
 	if (fd < 0)
-		parsing_error("texture error", 1);
+		parsing_error(1);
 	else
 		close(fd);
 	fd = open(info->so, O_RDONLY);
 	if (fd < 0)
-		parsing_error("texture error", 1);
+		parsing_error(1);
 	else
 		close(fd);
 	fd = open(info->we, O_RDONLY);
 	if (fd < 0)
-		parsing_error("texture error", 1);
+		parsing_error(1);
 	else
 		close(fd);
 	fd = open(info->ea, O_RDONLY);
 	if (fd < 0)
-		parsing_error("texture error", 1);
+		parsing_error(1);
 	else
 		close(fd);
 }
