@@ -6,7 +6,7 @@
 #    By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 13:21:11 by jeakim            #+#    #+#              #
-#    Updated: 2024/07/25 10:21:16 by jimchoi          ###   ########.fr        #
+#    Updated: 2024/07/25 17:52:31 by jimchoi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,6 @@ $(NAME): $(OBJS)
 	make -s -C $(MLXDIR)
 	cp ./$(MLXDIR)/libmlx.dylib ./libmlx.dylib
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAG) -o $(NAME)
-# $(CC) -o $@ $(OBJS) $(LIBFT)
-
 
 clean:
 	@rm -rf $(OBJS)

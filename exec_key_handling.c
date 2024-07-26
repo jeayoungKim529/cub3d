@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 15:27:10 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/25 17:37:17 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/25 18:49:48 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	key_press(int keycode, t_data *data)
 		data->rotate_right = 1;
 	else if (keycode == 53)
 		exit(0);
-	move(data);
 	clear_screen(data);
+	move(data);
 	return (0);
 }

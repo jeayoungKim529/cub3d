@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 20:40:49 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/25 17:46:27 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 12:53:30 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 # define MOVE_BACKWARD 1
 # define MOVE_LEFT 0
 # define MOVE_RIGHT 2
-# define SCREEN_WIDTH 640
-# define SCREEN_HEIGHT 480
+// # define SCREEN_WIDTH 640
+// # define SCREEN_HEIGHT 480
 // # define MOVE_SPEED 0.05
 // # define ROTATE 0.025
-// # define SCREEN_WIDTH 840
-// # define SCREEN_HEIGHT 680
+# define SCREEN_WIDTH 1280
+# define SCREEN_HEIGHT 960
 # define MOVE_SPEED 0.1
 # define ROTATE 0.05
 
@@ -120,8 +120,8 @@ void		move_horizontal(t_data *data);
 void		rotate(t_data *data);
 //exec_raycast
 void		init_ray(t_data *data, t_dda *d, int x);
-void		calculate_perp_wall_dist_texture_x(t_data *data, t_dda *d);
-void		draw_texture(t_data *data, t_dda *d, int x, int y);
+void		calculate_wall(t_data *data, t_dda *d);
+void		draw_wall(t_data *data, t_dda *d, int x, int y);
 int			main_loop(t_data *data);
 //exec
 long long	cub_atoi(char str);

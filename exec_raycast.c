@@ -6,7 +6,7 @@
 /*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 17:14:32 by jimchoi           #+#    #+#             */
-/*   Updated: 2024/07/24 20:33:49 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 12:52:36 by jimchoi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,11 @@ void	init_ray(t_data *data, t_dda *d, int x)
 {
 	double	camera_x;
 
+	d->map_x = (int)data->pos_x;
+	d->map_y = (int)data->pos_y;
 	camera_x = 2 * x / (double)SCREEN_WIDTH - 1;
 	d->ray_dir_x = data->dir_x + data->plane_x * camera_x;
 	d->ray_dir_y = data->dir_y + data->plane_y * camera_x;
-}
-
-void	set_delta_dist(t_dda *d)
-{
 	if (d->ray_dir_x == 0)
 		d->delta_dist_x = 1e30;
 	else
@@ -33,7 +31,7 @@ void	set_delta_dist(t_dda *d)
 		d->delta_dist_y = fabs(1 / d->ray_dir_y);
 }
 
-void	calculate_perp_wall_dist_texture_x(t_data *data, t_dda *d)
+void	calculate_wall(t_data *data, t_dda *d)
 {
 	double	wall_x;
 
@@ -52,7 +50,7 @@ void	calculate_perp_wall_dist_texture_x(t_data *data, t_dda *d)
 		d->tex_x = data->texture[0].width - d->tex_x - 1;
 }
 
-void	draw_texture(t_data *data, t_dda *d, int x, int y)
+void	draw_wall(t_data *data, t_dda *d, int x, int y)
 {
 	double	step;
 	double	tex_pos;
@@ -90,14 +88,11 @@ int	main_loop(t_data *data)
 	y = 0;
 	while (++x < SCREEN_WIDTH)
 	{
-		d.map_x = (int)data->pos_x;
-		d.map_y = (int)data->pos_y;
 		init_ray(data, &d, x);
-		set_delta_dist(&d);
 		init_dda(data, &d);
 		perform_dda(data, &d);
-		calculate_perp_wall_dist_texture_x(data, &d);
-		draw_texture(data, &d, x, y);
+		calculate_wall(data, &d);
+		draw_wall(data, &d, x, y);
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
