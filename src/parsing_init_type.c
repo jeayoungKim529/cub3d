@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_init_type.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/08 15:59:45 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 14:10:29 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 15:02:20 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	init_color(t_info *info, char **tmp, int flag)
 	i = -1;
 	while (++i < 3)
 		free(tmp[i]);
+	free(tmp);
 }
 
 void	init_texture(t_info *info, char *str)

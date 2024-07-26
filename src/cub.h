@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jimchoi <jimchoi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jeakim <jeakim@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/06 13:21:18 by jeakim            #+#    #+#             */
-/*   Updated: 2024/07/26 14:17:16 by jimchoi          ###   ########.fr       */
+/*   Updated: 2024/07/26 14:37:01 by jeakim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ typedef struct s_info
 void	parsing_error(int num);
 //parsing.c
 void	parsing(int argc, char *argv[], t_info *info);
+//ft_free.c
+void	ft_free(t_info *info);
 
 #endif
